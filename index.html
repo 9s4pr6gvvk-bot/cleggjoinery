@@ -91,32 +91,22 @@ h2 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(1.7rem, 2.8v
 .svc-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; font-size: 0.78rem; font-weight: 500; color: var(--black); text-decoration: none; border-bottom: 1px solid var(--rule); padding-bottom: 2px; align-self: flex-start; transition: border-color 0.2s, gap 0.2s; }
 .svc-card:hover .svc-link { border-color: var(--black); gap: 10px; }
 
-/* GALLERY - desktop */
-.gallery { padding: 0 5% 88px; background: var(--bg); }
-.gal-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 28px; flex-wrap: wrap; gap: 16px; padding-bottom: 28px; border-bottom: 1px solid var(--rule); }
-.gal-grid { display: grid; grid-template-columns: repeat(12,1fr); grid-template-rows: 240px 240px; gap: 4px; }
-.g-item { overflow: hidden; cursor: zoom-in; background: var(--rule); }
-.g-item:nth-child(1) { grid-column: span 5; grid-row: span 2; }
-.g-item:nth-child(2) { grid-column: span 4; }
-.g-item:nth-child(3) { grid-column: span 3; }
-.g-item:nth-child(4) { grid-column: span 3; }
-.g-item:nth-child(5) { grid-column: span 4; }
-.g-item img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(20%); transition: transform 0.55s ease, filter 0.4s; }
-.g-item:hover img { transform: scale(1.05); filter: grayscale(0%); }
-/* gallery slider (mobile only — hidden on desktop) */
-.gal-slider-wrap { display: none; position: relative; }
-.gal-slider { display: flex; overflow-x: scroll; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; gap: 10px; padding-bottom: 4px; }
-.gal-slider::-webkit-scrollbar { display: none; }
-.gal-slide { flex: 0 0 82vw; height: 260px; scroll-snap-align: start; overflow: hidden; border-radius: 2px; cursor: zoom-in; }
-.gal-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.gal-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 16px; padding: 0 5%; }
+/* GALLERY - unified slider */
+.gallery { padding: 0 0 88px; background: var(--bg); }
+.gal-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 28px; flex-wrap: wrap; gap: 16px; padding: 0 5% 28px; border-bottom: 1px solid var(--rule); }
+.gal-track-wrap { position: relative; overflow: hidden; }
+.gal-track { display: flex; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); will-change: transform; }
+.gal-slide-item { flex: 0 0 calc(50% - 2px); height: 420px; overflow: hidden; cursor: zoom-in; }
+.gal-slide-item:not(:last-child) { margin-right: 4px; }
+.gal-slide-item img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(20%); transition: transform 0.55s ease, filter 0.4s; }
+.gal-slide-item:hover img { transform: scale(1.04); filter: grayscale(0%); }
+.gal-controls { display: flex; align-items: center; justify-content: space-between; margin-top: 20px; padding: 0 5%; }
 .gal-dots { display: flex; gap: 6px; }
-.gal-pip { width: 6px; height: 6px; border-radius: 50%; background: var(--rule); border: none; padding: 0; cursor: pointer; transition: background 0.2s, transform 0.2s; }
-.gal-pip.active { background: var(--black); transform: scale(1.3); }
+.gal-pip { width: 28px; height: 3px; border-radius: 2px; background: var(--rule); border: none; padding: 0; cursor: pointer; transition: background 0.2s, width 0.2s; }
+.gal-pip.active { background: var(--black); width: 44px; }
 .gal-arrows { display: flex; gap: 8px; }
 .gal-arrow { width: 40px; height: 40px; border: 1.5px solid var(--rule); border-radius: 2px; background: var(--white); color: var(--black); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s, border-color 0.2s; }
 .gal-arrow:hover { background: var(--black); border-color: var(--black); color: var(--white); }
-.gal-arrow:hover svg path { stroke: var(--white); }
 .gal-arrow svg { width: 16px; height: 16px; }
 
 /* REVIEWS */
@@ -149,8 +139,11 @@ h2 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(1.7rem, 2.8v
 /* CONTACT */
 .contact { display: grid; grid-template-columns: 1fr 1.6fr; border-top: 1px solid var(--rule); }
 .c-info { padding: 64px 6%; background: var(--bg); border-right: 1px solid var(--rule); display: flex; flex-direction: column; gap: 28px; }
-.c-item { padding-top: 14px; border-top: 1px solid var(--rule); }
-.c-lbl { font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--light); margin-bottom: 4px; display: block; font-weight: 500; }
+.c-item { display: flex; align-items: flex-start; gap: 14px; }
+.c-icon { width: 38px; height: 38px; background: var(--black); border-radius: 2px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+.c-icon svg { width: 16px; height: 16px; stroke: var(--white); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.c-item-text { display: flex; flex-direction: column; gap: 2px; }
+.c-lbl { font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--light); display: block; font-weight: 500; }
 .c-val { font-size: 0.9rem; font-weight: 400; color: var(--charcoal); line-height: 1.6; }
 .c-val a { color: var(--charcoal); text-decoration: none; }
 .c-val a:hover { color: var(--black); text-decoration: underline; }
@@ -174,8 +167,7 @@ h2 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(1.7rem, 2.8v
 /* FOOTER */
 footer { background: var(--black); }
 .ft-inner { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr; border-bottom: 1px solid rgba(255,255,255,0.08); }
-.ft-col { padding: 52px 5%; border-right: 1px solid rgba(255,255,255,0.08); }
-.ft-col:last-child { border-right: none; }
+.ft-col { padding: 52px 5%; }
 .ft-logo img { height: 48px; width: auto; display: block; mix-blend-mode: screen; margin-bottom: 18px; }
 .ft-desc { font-size: 0.8rem; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.3); max-width: 260px; }
 .ft-title { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.4); display: block; margin-bottom: 18px; }
@@ -285,13 +277,9 @@ footer { background: var(--black); }
   .hero-label { color: var(--charcoal); }
   .hero-sub { color: var(--charcoal); }
 
-  /* MOBILE GALLERY — hide grid, show slider */
-  .gal-grid { display: none; }
-  .gal-slider-wrap { display: block; }
+  .gal-slide-item { flex: 0 0 calc(82vw); height: 280px; }
   .gallery { padding-left: 0; padding-right: 0; }
   .gal-header { padding-left: 5%; padding-right: 5%; }
-  .gal-slider { padding-left: 5%; padding-right: 5%; }
-  .gal-footer { padding: 0 5%; }
 }
 </style>
 </head>
@@ -302,7 +290,7 @@ footer { background: var(--black); }
   <a href="#" class="nav-logo"><img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/clegg%20logo%202.png" alt="Clegg Joinery"></a>
   <button class="hamburger" id="menuBtn" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
   <ul class="nav-links" id="navLinks">
-    <li class="nav-phone">&#128222; Call for a free quote</li>
+    <li class="nav-phone"><a href="tel:07926646925" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:6px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11 19.79 19.79 0 010 2.38 2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>07926 646925</a></li>
     <li><a href="#about" onclick="closeMenu()">About</a></li>
     <li><a href="#services" onclick="closeMenu()">Services</a></li>
     <li><a href="#gallery" onclick="closeMenu()">Gallery</a></li>
@@ -408,40 +396,30 @@ footer { background: var(--black); }
     <a href="#contact" class="btn-dark">Discuss Your Project</a>
   </div>
 
-  <!-- Desktop grid -->
-  <div class="gal-grid">
-    <div class="g-item" onclick="openLb(this.querySelector('img').src)"><img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/518345103_1286965949885427_1187104504117968155_n.jpg" alt="Project"></div>
-    <div class="g-item" onclick="openLb(this.querySelector('img').src)"><img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/476437298_1560730624631588_8337025387259448653_n.jpg" alt="Project"></div>
-    <div class="g-item" onclick="openLb(this.querySelector('img').src)"><img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/613176566_1432294858685868_5575951717679272650_n.jpg" alt="Project"></div>
-    <div class="g-item" onclick="openLb(this.querySelector('img').src)"><img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/561832653_1365559432026078_3632655305355833405_n.jpg" alt="Project"></div>
-    <div class="g-item" onclick="openLb(this.querySelector('img').src)"><img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/518388876_1287014116547277_5333059056139120176_n.jpg" alt="Project"></div>
-  </div>
-
-  <!-- Mobile slider -->
-  <div class="gal-slider-wrap">
-    <div class="gal-slider" id="galSlider">
-      <div class="gal-slide" onclick="openLb(this.querySelector('img').src)"><img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/518345103_1286965949885427_1187104504117968155_n.jpg" alt="Project"></div>
-      <div class="gal-slide" onclick="openLb(this.querySelector('img').src)"><img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/476437298_1560730624631588_8337025387259448653_n.jpg" alt="Project"></div>
-      <div class="gal-slide" onclick="openLb(this.querySelector('img').src)"><img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/613176566_1432294858685868_5575951717679272650_n.jpg" alt="Project"></div>
-      <div class="gal-slide" onclick="openLb(this.querySelector('img').src)"><img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/561832653_1365559432026078_3632655305355833405_n.jpg" alt="Project"></div>
-      <div class="gal-slide" onclick="openLb(this.querySelector('img').src)"><img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/518388876_1287014116547277_5333059056139120176_n.jpg" alt="Project"></div>
+  <!-- Unified slider -->
+  <div class="gal-track-wrap">
+    <div class="gal-track" id="galTrack">
+      <div class="gal-slide-item" onclick="openLb(this.querySelector('img').src)"><img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/518345103_1286965949885427_1187104504117968155_n.jpg" alt="Project"></div>
+      <div class="gal-slide-item" onclick="openLb(this.querySelector('img').src)"><img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/476437298_1560730624631588_8337025387259448653_n.jpg" alt="Project"></div>
+      <div class="gal-slide-item" onclick="openLb(this.querySelector('img').src)"><img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/613176566_1432294858685868_5575951717679272650_n.jpg" alt="Project"></div>
+      <div class="gal-slide-item" onclick="openLb(this.querySelector('img').src)"><img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/561832653_1365559432026078_3632655305355833405_n.jpg" alt="Project"></div>
+      <div class="gal-slide-item" onclick="openLb(this.querySelector('img').src)"><img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/518388876_1287014116547277_5333059056139120176_n.jpg" alt="Project"></div>
     </div>
-    <div class="gal-footer">
-      <div class="gal-dots" id="galDots">
-        <button class="gal-pip active" onclick="scrollToSlide(0)"></button>
-        <button class="gal-pip" onclick="scrollToSlide(1)"></button>
-        <button class="gal-pip" onclick="scrollToSlide(2)"></button>
-        <button class="gal-pip" onclick="scrollToSlide(3)"></button>
-        <button class="gal-pip" onclick="scrollToSlide(4)"></button>
-      </div>
-      <div class="gal-arrows">
-        <button class="gal-arrow" onclick="galStep(-1)" aria-label="Previous">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <button class="gal-arrow" onclick="galStep(1)" aria-label="Next">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-      </div>
+  </div>
+  <div class="gal-controls">
+    <div class="gal-dots" id="galDots">
+      <button class="gal-pip active" onclick="galGoTo(0)"></button>
+      <button class="gal-pip" onclick="galGoTo(1)"></button>
+      <button class="gal-pip" onclick="galGoTo(2)"></button>
+      <button class="gal-pip" onclick="galGoTo(3)"></button>
+    </div>
+    <div class="gal-arrows">
+      <button class="gal-arrow" onclick="galStep(-1)" aria-label="Previous">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="gal-arrow" onclick="galStep(1)" aria-label="Next">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
     </div>
   </div>
 </section>
@@ -507,9 +485,8 @@ footer { background: var(--black); }
       <p class="body-text">We cover Slaithwaite, Huddersfield and all surrounding areas. Get in touch and we'll get back to you the same day.</p>
     </div>
     <div>
-      <div class="c-item"><span class="c-lbl">Phone</span><span class="c-val"><a href="tel:+441234567890">Call us for a free quote</a></span></div>
-      <div class="c-item"><span class="c-lbl">Email</span><span class="c-val"><a href="mailto:info@cleggjoinery.co.uk">info@cleggjoinery.co.uk</a></span></div>
-      <div class="c-item"><span class="c-lbl">Hours</span><span class="c-val">Mon &#8211; Fri, 7:30am &#8211; 5:30pm</span></div>
+      <div class="c-item"><div class="c-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11 19.79 19.79 0 0 0 .0 2.38 2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div><div class="c-item-text"><span class="c-lbl">Phone</span><span class="c-val"><a href="tel:07926646925">07926 646925</a></span></div></div>
+      <div class="c-item"><div class="c-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="c-item-text"><span class="c-lbl">Email</span><span class="c-val"><a href="mailto:info@cleggjoinery.co.uk">info@cleggjoinery.co.uk</a></span></div></div>
     </div>
     <div class="locations-wrap">
       <span class="c-lbl">Areas We Cover</span>
@@ -585,15 +562,14 @@ footer { background: var(--black); }
     <div class="ft-col">
       <span class="ft-title">Contact</span>
       <ul>
-        <li><a href="tel:+441234567890">Call for a free quote</a></li>
+        <li><a href="tel:07926646925">07926 646925</a></li>
         <li><a href="mailto:info@cleggjoinery.co.uk">info@cleggjoinery.co.uk</a></li>
-        <li><a href="#">Mon&#8211;Fri, 7:30am &#8211; 5:30pm</a></li>
       </ul>
     </div>
   </div>
   <div class="ft-bottom">
     <span>&#169; 2025 Clegg Joinery &#183; All rights reserved</span>
-    <a href="#">Privacy Policy</a>
+    <a href="https://www.franks-media.co.uk" target="_blank" rel="noopener">Website by Franks Media</a>
   </div>
 </footer>
 
@@ -643,32 +619,23 @@ function openLb(src) { document.getElementById('lb-img').src = src; document.get
 function closeLb() { document.getElementById('lb').classList.remove('open'); }
 document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLb(); });
 
-// Gallery slider dot tracking
-var galSlider = document.getElementById('galSlider');
+// Gallery slider
+var galIndex = 0;
+var galTrack = document.getElementById('galTrack');
 var galPips = document.querySelectorAll('.gal-pip');
-function scrollToSlide(i) {
-  var slides = galSlider.querySelectorAll('.gal-slide');
-  if (slides[i]) galSlider.scrollTo({ left: slides[i].offsetLeft - galSlider.offsetLeft, behavior: 'smooth' });
+var galItems = galTrack ? galTrack.querySelectorAll('.gal-slide-item') : [];
+var galPerView = window.innerWidth < 640 ? 1 : 2;
+
+function galGetPerView() { return window.innerWidth < 640 ? 1 : 2; }
+function galMaxIndex() { return Math.max(0, galItems.length - galGetPerView()); }
+function galGoTo(n) {
+  galIndex = Math.max(0, Math.min(n, galMaxIndex()));
+  var slideW = galItems[0] ? galItems[0].offsetWidth + 4 : 0;
+  galTrack.style.transform = 'translateX(-' + (galIndex * slideW) + 'px)';
+  galPips.forEach(function(p, i) { p.classList.toggle('active', i === galIndex); });
 }
-function galStep(dir) {
-  var pips = document.querySelectorAll('.gal-pip');
-  var cur = 0;
-  pips.forEach(function(p, i) { if (p.classList.contains('active')) cur = i; });
-  var next = Math.max(0, Math.min(pips.length - 1, cur + dir));
-  scrollToSlide(next);
-}
-if (galSlider) {
-  galSlider.addEventListener('scroll', function() {
-    var slides = galSlider.querySelectorAll('.gal-slide');
-    var closest = 0;
-    var minDist = Infinity;
-    slides.forEach(function(s, i) {
-      var dist = Math.abs(s.offsetLeft - galSlider.offsetLeft - galSlider.scrollLeft);
-      if (dist < minDist) { minDist = dist; closest = i; }
-    });
-    galPips.forEach(function(p, i) { p.classList.toggle('active', i === closest); });
-  });
-}
+function galStep(dir) { galGoTo(galIndex + dir); }
+window.addEventListener('resize', function() { galGoTo(Math.min(galIndex, galMaxIndex())); });
 </script>
 </body>
 </html>
