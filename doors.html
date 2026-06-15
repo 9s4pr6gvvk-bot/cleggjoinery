@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Door Fitting – Clegg Joinery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --black:   #111111;
+  --dark:    #1e1e1e;
+  --charcoal:#333333;
+  --mid:     #666666;
+  --light:   #999999;
+  --rule:    #e0e0e0;
+  --bg:      #f7f7f5;
+  --white:   #ffffff;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--charcoal); overflow-x: hidden; }
+
+/* NAV */
+nav { background: var(--black); display: flex; align-items: center; justify-content: space-between; padding: 0 5%; height: 76px; position: sticky; top: 0; z-index: 200; }
+.nav-logo { display: flex; align-items: center; line-height: 0; flex-shrink: 0; }
+.nav-logo img { height: 48px; width: auto; display: block; mix-blend-mode: screen; }
+.nav-links { display: flex; list-style: none; height: 76px; align-items: center; gap: 4px; }
+.nav-links a { display: flex; align-items: center; padding: 0 16px; height: 100%; font-size: 0.82rem; font-weight: 400; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--white); }
+.nav-cta { background: var(--white) !important; color: var(--black) !important; font-weight: 500 !important; height: auto !important; padding: 10px 22px !important; border-radius: 2px; margin-left: 8px; font-size: 0.8rem !important; transition: opacity 0.2s !important; }
+.nav-cta:hover { opacity: 0.85; }
+.nav-phone { font-size: 0.8rem; color: rgba(255,255,255,0.45); font-weight: 300; margin-right: 4px; }
+.hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; width: 40px; height: 40px; }
+.hamburger span { display: block; width: 22px; height: 1.5px; background: var(--white); border-radius: 2px; transition: transform 0.3s ease, opacity 0.3s ease; transform-origin: center; }
+.hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* HERO */
+.hero { position: relative; height: 72vh; min-height: 480px; overflow: hidden; display: flex; align-items: flex-end; }
+.hero-bg { position: absolute; inset: 0; background-image: url('https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/561832653_1365559432026078_3632655305355833405_n.jpg'); background-size: cover; background-position: center; }
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(17,17,17,0.92) 0%, rgba(17,17,17,0.65) 45%, rgba(17,17,17,0.35) 100%); }
+.hero-content { position: relative; z-index: 2; padding: 0 5% 56px; width: 100%; display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+.hero-text { max-width: 580px; }
+.hero-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 14px; display: block; }
+.hero h1 { font-size: clamp(2.4rem, 4.5vw, 4rem); font-weight: 700; line-height: 1.1; color: var(--white); letter-spacing: -0.025em; margin-bottom: 16px; }
+.hero-sub { font-size: 1rem; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.65); max-width: 480px; }
+.hero-actions { display: flex; gap: 12px; flex-shrink: 0; align-self: flex-end; }
+
+/* BREADCRUMB */
+.breadcrumb { background: var(--white); border-bottom: 1px solid var(--rule); padding: 14px 5%; display: flex; align-items: center; gap: 8px; }
+.breadcrumb a { font-size: 0.75rem; color: var(--light); text-decoration: none; transition: color 0.2s; }
+.breadcrumb a:hover { color: var(--black); }
+.breadcrumb span { font-size: 0.75rem; color: var(--rule); }
+.breadcrumb strong { font-size: 0.75rem; font-weight: 500; color: var(--charcoal); }
+
+/* INTRO */
+.intro { display: grid; grid-template-columns: 1fr 1fr; background: var(--white); border-bottom: 1px solid var(--rule); }
+.intro-text { padding: 72px 7%; display: flex; flex-direction: column; gap: 22px; justify-content: center; border-right: 1px solid var(--rule); }
+.intro-img { overflow: hidden; min-height: 480px; }
+.intro-img img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(15%); transition: transform 0.9s ease; }
+.intro-img:hover img { transform: scale(1.03); }
+
+/* TYPE CARDS */
+.types { padding: 88px 5%; background: var(--bg); border-bottom: 1px solid var(--rule); }
+.types-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-top: 44px; }
+.type-card { background: var(--white); border: 1px solid var(--rule); overflow: hidden; display: flex; }
+.type-photo { width: 220px; flex-shrink: 0; overflow: hidden; }
+.type-photo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(15%); transition: transform 0.55s ease, filter 0.4s; }
+.type-card:hover .type-photo img { transform: scale(1.05); filter: grayscale(0%); }
+.type-body { padding: 28px 28px 32px; display: flex; flex-direction: column; gap: 10px; border-left: 3px solid transparent; transition: border-color 0.25s; flex: 1; }
+.type-card:hover .type-body { border-color: var(--black); }
+.type-tag { font-size: 0.62rem; letter-spacing: 0.2em; color: var(--light); font-weight: 500; text-transform: uppercase; }
+.type-body h3 { font-size: 1.1rem; font-weight: 600; color: var(--black); letter-spacing: -0.01em; line-height: 1.2; }
+.type-body p { font-size: 0.82rem; font-weight: 300; line-height: 1.85; color: var(--mid); }
+.type-list { list-style: none; display: flex; flex-direction: column; gap: 7px; margin-top: 4px; }
+.type-list li { display: flex; gap: 10px; font-size: 0.8rem; font-weight: 300; color: var(--mid); align-items: flex-start; }
+.type-list li::before { content: '–'; color: var(--light); flex-shrink: 0; }
+
+/* GALLERY */
+.gallery { padding: 88px 0; background: var(--bg); }
+.gallery + .gallery { padding-top: 0; }
+.gallery .sec-header { padding: 0 5% 28px; border-bottom: 1px solid var(--rule); margin-bottom: 0; }
+.gal-track-wrap { overflow: hidden; }
+.gal-track { display: flex; transition: transform 0.5s cubic-bezier(0.4,0,0.2,1); will-change: transform; }
+.gal-slide-item { flex: 0 0 calc(50% - 2px); height: 440px; overflow: hidden; cursor: zoom-in; flex-shrink: 0; }
+.gal-slide-item:not(:last-child) { margin-right: 4px; }
+.gal-slide-item img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(15%); transition: transform 0.55s ease, filter 0.4s; }
+.gal-slide-item:hover img { transform: scale(1.04); filter: grayscale(0%); }
+.gal-controls { display: flex; align-items: center; justify-content: space-between; margin-top: 20px; padding: 0 5%; }
+.gal-dots { display: flex; gap: 6px; }
+.gal-pip { width: 28px; height: 3px; border-radius: 2px; background: var(--rule); border: none; padding: 0; cursor: pointer; transition: background 0.2s, width 0.2s; }
+.gal-pip.active { background: var(--black); width: 44px; }
+.gal-arrows { display: flex; gap: 8px; }
+.gal-arrow { width: 40px; height: 40px; border: 1.5px solid var(--rule); border-radius: 2px; background: var(--white); color: var(--black); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s, border-color 0.2s; }
+.gal-arrow:hover { background: var(--black); border-color: var(--black); color: var(--white); }
+.gal-arrow svg { width: 16px; height: 16px; }
+
+/* SEC HEADER */
+.sec-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 44px; gap: 20px; flex-wrap: wrap; padding-bottom: 28px; border-bottom: 1px solid var(--rule); }
+.sec-sub { font-size: 0.88rem; font-weight: 300; line-height: 1.8; color: var(--mid); max-width: 380px; }
+
+/* PROCESS */
+.process { background: var(--white); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 88px 5%; }
+.process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 44px; border-top: 1px solid var(--rule); }
+.process-step { padding: 36px 5% 36px 0; border-right: 1px solid var(--rule); }
+.process-step:last-child { border-right: none; padding-right: 0; padding-left: 5%; }
+.process-step:not(:first-child) { padding-left: 5%; }
+.step-num { font-size: 0.62rem; letter-spacing: 0.2em; color: var(--light); display: block; margin-bottom: 14px; font-weight: 500; }
+.step-title { font-size: 1rem; font-weight: 600; color: var(--black); margin-bottom: 10px; letter-spacing: -0.01em; }
+.step-desc { font-size: 0.82rem; font-weight: 300; line-height: 1.85; color: var(--mid); }
+
+/* SHARED */
+.s-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--light); display: block; }
+h2 { font-size: clamp(1.7rem, 2.8vw, 2.4rem); font-weight: 700; line-height: 1.15; color: var(--black); letter-spacing: -0.02em; }
+.body-text { font-size: 0.9rem; font-weight: 300; line-height: 1.9; color: var(--mid); }
+.checklist { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+.checklist li { display: flex; gap: 12px; font-size: 0.85rem; font-weight: 300; color: var(--mid); line-height: 1.55; align-items: flex-start; }
+.checklist li::before { content: '–'; color: var(--light); flex-shrink: 0; font-size: 0.8rem; margin-top: 1px; }
+.btn-dark { display: inline-block; background: var(--black); color: var(--white); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.82rem; font-weight: 500; padding: 14px 28px; text-decoration: none; border-radius: 2px; transition: background 0.2s; }
+.btn-dark:hover { background: var(--dark); }
+.btn-outline { display: inline-block; background: transparent; color: var(--charcoal); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.82rem; font-weight: 400; padding: 13px 28px; text-decoration: none; border: 1.5px solid var(--rule); border-radius: 2px; transition: border-color 0.2s, color 0.2s; }
+.btn-outline:hover { border-color: var(--charcoal); color: var(--black); }
+.btn-white { display: inline-block; background: var(--white); color: var(--black); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.82rem; font-weight: 500; padding: 14px 28px; text-decoration: none; border-radius: 2px; transition: opacity 0.2s; }
+.btn-white:hover { opacity: 0.85; }
+.btn-white-outline { display: inline-block; background: transparent; color: rgba(255,255,255,0.65); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.82rem; font-weight: 400; padding: 13px 28px; text-decoration: none; border: 1.5px solid rgba(255,255,255,0.2); border-radius: 2px; transition: border-color 0.2s, color 0.2s; }
+.btn-white-outline:hover { border-color: rgba(255,255,255,0.55); color: var(--white); }
+
+/* CTA */
+.cta { background: var(--black); padding: 72px 5%; display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+.cta h2 { color: var(--white); max-width: 520px; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 700; letter-spacing: -0.02em; }
+.cta-btns { display: flex; gap: 12px; flex-wrap: wrap; flex-shrink: 0; }
+
+/* CONTACT */
+.contact { display: grid; grid-template-columns: 1fr 1.6fr; border-top: 1px solid var(--rule); }
+.c-info { padding: 64px 6%; background: var(--bg); border-right: 1px solid var(--rule); display: flex; flex-direction: column; gap: 28px; }
+.c-item { display: flex; align-items: flex-start; gap: 14px; }
+.c-icon { width: 38px; height: 38px; background: var(--black); border-radius: 2px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+.c-icon svg { width: 16px; height: 16px; stroke: var(--white); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.c-item-text { display: flex; flex-direction: column; gap: 2px; }
+.c-lbl { font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--light); display: block; font-weight: 500; }
+.c-val { font-size: 0.9rem; font-weight: 400; color: var(--charcoal); line-height: 1.6; }
+.c-val a { color: var(--charcoal); text-decoration: none; }
+.c-val a:hover { color: var(--black); text-decoration: underline; }
+.locations-wrap { padding-top: 14px; border-top: 1px solid var(--rule); }
+.locations-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.loc-tag { font-size: 0.75rem; font-weight: 400; color: var(--mid); background: var(--white); border: 1px solid var(--rule); padding: 5px 12px; border-radius: 20px; }
+.c-form { padding: 64px 6%; background: var(--white); }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 24px; }
+.f-field { display: flex; flex-direction: column; gap: 6px; }
+.f-field.full { grid-column: span 2; }
+.f-field label { font-size: 0.75rem; font-weight: 500; color: var(--charcoal); }
+.f-field input, .f-field select, .f-field textarea { background: var(--bg); border: 1.5px solid var(--rule); border-radius: 2px; padding: 11px 13px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.88rem; font-weight: 300; color: var(--black); outline: none; transition: border-color 0.2s, background 0.2s; width: 100%; -webkit-appearance: none; }
+.f-field input::placeholder, .f-field textarea::placeholder { color: #bbb; }
+.f-field input:focus, .f-field select:focus, .f-field textarea:focus { border-color: var(--black); background: var(--white); }
+.f-field select { cursor: pointer; }
+.f-field textarea { resize: vertical; min-height: 100px; }
+.f-submit { grid-column: span 2; width: 100%; padding: 14px; background: var(--black); color: var(--white); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.85rem; font-weight: 500; border: none; border-radius: 2px; cursor: pointer; transition: background 0.2s; margin-top: 2px; }
+.f-submit:hover { background: var(--dark); }
+.f-ok { grid-column: span 2; display: none; padding: 12px; background: #f0f5f0; border: 1px solid #c0d8c0; border-radius: 2px; color: #3a5e3a; font-size: 0.85rem; text-align: center; }
+
+/* FOOTER */
+footer { background: var(--black); }
+.ft-inner { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.ft-col { padding: 52px 5%; }
+.ft-logo img { height: 48px; width: auto; display: block; mix-blend-mode: screen; margin-bottom: 18px; }
+.ft-desc { font-size: 0.8rem; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.3); max-width: 260px; }
+.ft-title { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.4); display: block; margin-bottom: 18px; }
+.ft-col ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+.ft-col a { font-size: 0.82rem; font-weight: 300; color: rgba(255,255,255,0.3); text-decoration: none; transition: color 0.2s; }
+.ft-col a:hover { color: rgba(255,255,255,0.75); }
+.ft-bottom { padding: 18px 5%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+.ft-bottom span, .ft-bottom a { font-size: 0.72rem; color: rgba(255,255,255,0.2); text-decoration: none; font-weight: 300; }
+
+/* LIGHTBOX */
+.lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 1000; display: none; align-items: center; justify-content: center; }
+.lightbox.open { display: flex; }
+.lightbox img { max-width: 90vw; max-height: 88vh; object-fit: contain; }
+.lb-close { position: absolute; top: 22px; right: 28px; background: none; border: none; color: rgba(255,255,255,0.5); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: color 0.2s; }
+.lb-close:hover { color: #fff; }
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.65s ease, transform 0.65s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+/* RESPONSIVE */
+@media (max-width: 1080px) {
+  .ft-inner { grid-template-columns: 1fr 1fr; }
+  .ft-col:nth-child(3), .ft-col:nth-child(4) { border-top: 1px solid rgba(255,255,255,0.08); }
+  .process-grid { grid-template-columns: 1fr 1fr; }
+  .process-step:nth-child(2) { border-right: none; }
+  .process-step:nth-child(3) { border-top: 1px solid var(--rule); border-right: 1px solid var(--rule); }
+  .process-step:nth-child(4) { border-top: 1px solid var(--rule); border-right: none; }
+  .types-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 860px) {
+  .intro { grid-template-columns: 1fr; }
+  .intro-text { border-right: none; border-bottom: 1px solid var(--rule); }
+  .intro-img { min-height: 300px; }
+  .contact { grid-template-columns: 1fr; }
+  .c-info { border-right: none; border-bottom: 1px solid var(--rule); padding: 52px 5%; }
+  .c-form { padding: 52px 5%; }
+  .cta { flex-direction: column; align-items: flex-start; }
+  .hero-actions { width: 100%; }
+  .type-card { flex-direction: column; }
+  .type-photo { width: 100%; height: 220px; }
+}
+@media (max-width: 640px) {
+  nav { padding: 0 5%; }
+  .nav-phone { display: none; }
+  .hamburger { display: flex; }
+  .nav-links { display: none; position: fixed; top: 76px; left: 0; right: 0; bottom: 0; background: var(--black); flex-direction: column; height: auto; z-index: 199; padding: 8px 0 40px; overflow-y: auto; border-top: 1px solid rgba(255,255,255,0.08); }
+  .nav-links.open { display: flex; }
+  .nav-links li { width: 100%; }
+  .nav-links a { padding: 18px 6%; height: auto; font-size: 1rem; font-weight: 500; color: rgba(255,255,255,0.7); border-bottom: 1px solid rgba(255,255,255,0.06); justify-content: space-between; }
+  .nav-links a::after { content: '→'; font-size: 0.9rem; color: rgba(255,255,255,0.25); }
+  .nav-links a:hover { color: var(--white); background: rgba(255,255,255,0.04); }
+  .nav-links li:last-child a { border-bottom: none; }
+  .nav-cta { background: var(--white) !important; color: var(--black) !important; margin: 24px 6% 0 !important; padding: 16px 24px !important; border-radius: 2px !important; font-size: 0.88rem !important; font-weight: 600 !important; text-align: center; justify-content: center !important; height: auto !important; }
+  .nav-cta::after { display: none !important; }
+  .gal-slide-item { flex: 0 0 88vw; height: 300px; }
+  .process-grid { grid-template-columns: 1fr; }
+  .process-step { border-right: none !important; border-top: 1px solid var(--rule); padding: 28px 0 !important; }
+  .process-step:first-child { border-top: none; }
+  .form-grid { grid-template-columns: 1fr; }
+  .f-field.full, .f-submit, .f-ok { grid-column: span 1; }
+  .ft-inner { grid-template-columns: 1fr; }
+  .ft-col { border-top: 1px solid rgba(255,255,255,0.08); padding: 32px 5%; }
+  .ft-col:first-child { border-top: none; }
+  .hero h1 { font-size: 2.2rem; }
+  .hero-content { padding-bottom: 40px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="cleggindex.html" class="nav-logo"><img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/clegg%20logo%202.png" alt="Clegg Joinery"></a>
+  <button class="hamburger" id="menuBtn" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+  <ul class="nav-links" id="navLinks">
+    <li class="nav-phone"><a href="tel:07926646925" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:6px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11 19.79 19.79 0 010 2.38 2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>07926 646925</a></li>
+    <li><a href="cleggindex.html#about" onclick="closeMenu()">About</a></li>
+    <li><a href="cleggindex.html#services" onclick="closeMenu()">Services</a></li>
+    <li><a href="#gallery-ext" onclick="closeMenu()">Gallery</a></li>
+    <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+    <li><a href="#contact" class="nav-cta" onclick="closeMenu()">Free Quote</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <span class="hero-label">Clegg Joinery · Door Fitting</span>
+      <h1>Doors fitted right,<br>first time.</h1>
+      <p class="hero-sub">Bespoke timber doors supplied and fitted for homes across Huddersfield and the Colne Valley — interior and exterior, to the highest standard.</p>
+    </div>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-white">Get a Free Quote</a>
+      <a href="#gallery-ext" class="btn-white-outline">See Our Work</a>
+    </div>
+  </div>
+</div>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="cleggindex.html">Home</a>
+  <span>/</span>
+  <a href="cleggindex.html#services">Services</a>
+  <span>/</span>
+  <strong>Door Fitting</strong>
+</div>
+
+<!-- INTRO -->
+<div class="intro">
+  <div class="intro-text reveal">
+    <span class="s-label">Why Choose Clegg Joinery</span>
+    <h2>Every door hung with care and precision.</h2>
+    <p class="body-text">A poorly fitted door lets in draughts, rattles in the frame and wears badly over time. We take the time to get every door hung perfectly — plumb, level and operating smoothly — whether it's a single internal door or a full house of new external frames.</p>
+    <p class="body-text">We supply quality timber doors and frames, or fit doors you've sourced yourself. All work is carried out cleanly, with full attention to the finishing details.</p>
+    <ul class="checklist">
+      <li>Interior and exterior doors supplied and fitted</li>
+      <li>Fit-only service available for doors you've already purchased</li>
+      <li>Solid timber, hardwood and engineered options</li>
+      <li>Door frames, linings, architrave and hardware all taken care of</li>
+      <li>Draught-proofing and weatherseal on all external doors</li>
+      <li>Tidy, professional and fully insured</li>
+    </ul>
+    <div><a href="#contact" class="btn-dark">Request a Free Quote</a></div>
+  </div>
+  <div class="intro-img">
+    <img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/646854322_1482501346998552_2391119150209680484_n.jpg" alt="Door fitting by Clegg Joinery">
+  </div>
+</div>
+
+<!-- DOOR TYPES -->
+<section class="types" id="types">
+  <div class="sec-header reveal">
+    <div>
+      <span class="s-label" style="display:block;margin-bottom:10px">What We Fit</span>
+      <h2>Interior &amp; exterior doors</h2>
+    </div>
+    <p class="sec-sub">From front doors that make a statement to internal doors that complement your home's style throughout.</p>
+  </div>
+  <div class="types-grid">
+    <div class="type-card reveal">
+      <div class="type-photo">
+        <img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/561832653_1365559432026078_3632655305355833405_n.jpg" alt="Exterior door">
+      </div>
+      <div class="type-body">
+        <span class="type-tag">Exterior</span>
+        <h3>External Doors &amp; Frames</h3>
+        <p>Your front or back door is one of the most important elements of your home — for security, insulation and kerb appeal. We supply and fit solid timber and hardwood external doors built to last, properly sealed against the weather.</p>
+        <ul class="type-list">
+          <li>Hardwood and solid timber front doors</li>
+          <li>Back doors and side access doors</li>
+          <li>Full frame and lining replacement</li>
+          <li>Multipoint locking and security hardware</li>
+          <li>Draught seals and weatherstripping</li>
+        </ul>
+      </div>
+    </div>
+    <div class="type-card reveal" style="transition-delay:.07s">
+      <div class="type-photo">
+        <img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/648839639_1482539720328048_730536368290374249_n.jpg" alt="Interior door">
+      </div>
+      <div class="type-body">
+        <span class="type-tag">Interior</span>
+        <h3>Internal Doors &amp; Linings</h3>
+        <p>Internal doors tie a home together. Whether you want a consistent look throughout or bespoke doors for a particular room, we'll fit them cleanly and precisely — with all architrave, stops and hardware finished to a high standard.</p>
+        <ul class="type-list">
+          <li>Solid core and hollow core internal doors</li>
+          <li>Oak, pine and painted finish options</li>
+          <li>Door linings, frames and architrave</li>
+          <li>Fire doors where required</li>
+          <li>Single doors or whole-house fits</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXTERIOR GALLERY -->
+<section class="gallery" id="gallery-ext">
+  <div class="sec-header reveal">
+    <div>
+      <span class="s-label" style="display:block;margin-bottom:10px">Exterior Doors</span>
+      <h2>External door projects</h2>
+    </div>
+    <p class="sec-sub">Hardwood and timber external doors supplied and fitted.</p>
+  </div>
+  <div class="gal-track-wrap">
+    <div class="gal-track" id="galTrackExt">
+      <div class="gal-slide-item" onclick="openLb(this.querySelector('img').src)"><img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/561832653_1365559432026078_3632655305355833405_n.jpg" alt="Exterior door"></div>
+      <div class="gal-slide-item" onclick="openLb(this.querySelector('img').src)"><img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/646854322_1482501346998552_2391119150209680484_n.jpg" alt="Exterior door"></div>
+      <div class="gal-slide-item" onclick="openLb(this.querySelector('img').src)"><img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/565709155_1365559372026084_7137873278370312882_n.jpg" alt="Exterior door"></div>
+      <div class="gal-slide-item" onclick="openLb(this.querySelector('img').src)"><img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/648961196_1482501330331887_5219399069284703884_n.jpg" alt="Exterior door"></div>
+    </div>
+  </div>
+  <div class="gal-controls">
+    <div class="gal-dots" id="galDotsExt">
+      <button class="gal-pip active" onclick="galGoTo('ext', 0)"></button>
+      <button class="gal-pip" onclick="galGoTo('ext', 1)"></button>
+      <button class="gal-pip" onclick="galGoTo('ext', 2)"></button>
+    </div>
+    <div class="gal-arrows">
+      <button class="gal-arrow" onclick="galStep('ext', -1)" aria-label="Previous">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="gal-arrow" onclick="galStep('ext', 1)" aria-label="Next">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- INTERIOR GALLERY -->
+<section class="gallery" id="gallery-int" style="padding-top:64px">
+  <div class="sec-header reveal">
+    <div>
+      <span class="s-label" style="display:block;margin-bottom:10px">Interior Doors</span>
+      <h2>Internal door projects</h2>
+    </div>
+    <p class="sec-sub">Internal doors and linings fitted throughout.</p>
+  </div>
+  <div class="gal-track-wrap">
+    <div class="gal-track" id="galTrackInt">
+      <div class="gal-slide-item" onclick="openLb(this.querySelector('img').src)"><img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/648839639_1482539720328048_730536368290374249_n.jpg" alt="Interior door"></div>
+      <div class="gal-slide-item" onclick="openLb(this.querySelector('img').src)"><img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/656643691_1499974628584557_8116919137540238772_n.jpg" alt="Interior door"></div>
+      <div class="gal-slide-item" onclick="openLb(this.querySelector('img').src)"><img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/660469394_1499974631917890_3974955866901622569_n.jpg" alt="Interior door"></div>
+    </div>
+  </div>
+  <div class="gal-controls">
+    <div class="gal-dots" id="galDotsInt">
+      <button class="gal-pip active" onclick="galGoTo('int', 0)"></button>
+      <button class="gal-pip" onclick="galGoTo('int', 1)"></button>
+    </div>
+    <div class="gal-arrows">
+      <button class="gal-arrow" onclick="galStep('int', -1)" aria-label="Previous">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="gal-arrow" onclick="galStep('int', 1)" aria-label="Next">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process">
+  <div class="sec-header reveal" style="margin-bottom:0;border-bottom:none;padding-bottom:0">
+    <div>
+      <span class="s-label" style="display:block;margin-bottom:10px">How It Works</span>
+      <h2>Simple, stress-free door fitting</h2>
+    </div>
+    <p class="sec-sub">We handle everything from the first measurement to the final lick of sealant.</p>
+  </div>
+  <div class="process-grid">
+    <div class="process-step reveal">
+      <span class="step-num">01</span>
+      <div class="step-title">Free Measure &amp; Quote</div>
+      <p class="step-desc">We visit, take exact measurements and give you a clear, itemised quote. No obligation and no hidden extras.</p>
+    </div>
+    <div class="process-step reveal" style="transition-delay:.06s">
+      <span class="step-num">02</span>
+      <div class="step-title">Door Selection</div>
+      <p class="step-desc">We advise on timber species, styles and hardware to suit your home and budget — or we'll fit doors you've already chosen.</p>
+    </div>
+    <div class="process-step reveal" style="transition-delay:.12s">
+      <span class="step-num">03</span>
+      <div class="step-title">Professional Fit</div>
+      <p class="step-desc">Every door is hung plumb and true, with all frames, linings, architrave and hardware fitted cleanly and precisely.</p>
+    </div>
+    <div class="process-step reveal" style="transition-delay:.18s">
+      <span class="step-num">04</span>
+      <div class="step-title">Finished &amp; Signed Off</div>
+      <p class="step-desc">We leave your home clean and tidy. Every door is checked before we go — operating smoothly, sealed and looking great.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta reveal">
+  <h2>Need doors fitting?<br>Get a free quote today.</h2>
+  <div class="cta-btns">
+    <a href="#contact" class="btn-white">Contact Us Now</a>
+    <a href="mailto:info@cleggjoinery.co.uk" class="btn-white-outline">Send an Email</a>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="contact" id="contact">
+  <div class="c-info reveal">
+    <div>
+      <span class="s-label" style="display:block;margin-bottom:10px">Get in Touch</span>
+      <h2 style="margin-bottom:14px">Get a free quote</h2>
+      <p class="body-text">We cover Slaithwaite, Huddersfield and all surrounding areas. Get in touch and we'll get back to you the same day.</p>
+    </div>
+    <div>
+      <div class="c-item"><div class="c-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11 19.79 19.79 0 010 2.38 2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div><div class="c-item-text"><span class="c-lbl">Phone</span><span class="c-val"><a href="tel:07926646925">07926 646925</a></span></div></div>
+      <div class="c-item"><div class="c-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="c-item-text"><span class="c-lbl">Email</span><span class="c-val"><a href="mailto:info@cleggjoinery.co.uk">info@cleggjoinery.co.uk</a></span></div></div>
+    </div>
+    <div class="locations-wrap">
+      <span class="c-lbl">Areas We Cover</span>
+      <div class="locations-grid">
+        <span class="loc-tag">Slaithwaite</span>
+        <span class="loc-tag">Huddersfield</span>
+        <span class="loc-tag">Marsden</span>
+        <span class="loc-tag">Meltham</span>
+        <span class="loc-tag">Holmfirth</span>
+        <span class="loc-tag">Golcar</span>
+        <span class="loc-tag">Lindley</span>
+        <span class="loc-tag">Milnsbridge</span>
+        <span class="loc-tag">Honley</span>
+        <span class="loc-tag">Kirkburton</span>
+        <span class="loc-tag">&amp; surrounding areas</span>
+      </div>
+    </div>
+  </div>
+  <div class="c-form reveal" style="transition-delay:.07s">
+    <form onsubmit="handleForm(event)" autocomplete="off">
+      <span class="s-label" style="display:block;margin-bottom:6px">Enquiry Form</span>
+      <h2 style="font-size:1.4rem;margin-bottom:4px">Tell us about your project</h2>
+      <div class="form-grid">
+        <div class="f-field"><label>First Name</label><input type="text" placeholder="John" required></div>
+        <div class="f-field"><label>Last Name</label><input type="text" placeholder="Smith" required></div>
+        <div class="f-field full"><label>Phone Number</label><input type="tel" placeholder="07700 000000"></div>
+        <div class="f-field full"><label>Email Address</label><input type="email" placeholder="john@example.com" required></div>
+        <div class="f-field full"><label>Door Type</label>
+          <select>
+            <option value="">Please select...</option>
+            <option>External door(s)</option>
+            <option>Internal door(s)</option>
+            <option>Both internal &amp; external</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="f-field full"><label>Project Details</label><textarea placeholder="How many doors? Supply and fit, or fit only? Any other details..."></textarea></div>
+        <button type="submit" class="f-submit">Send Enquiry</button>
+        <div class="f-ok" id="form-msg">&#10003; Thank you — we'll be in touch shortly.</div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-inner">
+    <div class="ft-col">
+      <div class="ft-logo"><img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/clegg%20logo%202.png" alt="Clegg Joinery"></div>
+      <p class="ft-desc">Expert joinery and bespoke carpentry for domestic and commercial clients across Slaithwaite, Huddersfield and the surrounding region.</p>
+    </div>
+    <div class="ft-col">
+      <span class="ft-title">Services</span>
+      <ul>
+        <li><a href="#">Doors &amp; Windows</a></li>
+        <li><a href="kitchens.html">Fitted Kitchens</a></li>
+        <li><a href="cleggindex.html#services">Interior Joinery</a></li>
+        <li><a href="cleggindex.html#services">Flooring</a></li>
+        <li><a href="cleggindex.html#services">Fitted Furniture</a></li>
+        <li><a href="cleggindex.html#services">Commercial</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <span class="ft-title">Company</span>
+      <ul>
+        <li><a href="cleggindex.html#about">About Us</a></li>
+        <li><a href="cleggindex.html#gallery">Gallery</a></li>
+        <li><a href="cleggindex.html#reviews">Reviews</a></li>
+        <li><a href="#contact">Get a Quote</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <span class="ft-title">Contact</span>
+      <ul>
+        <li><a href="tel:07926646925">07926 646925</a></li>
+        <li><a href="mailto:info@cleggjoinery.co.uk">info@cleggjoinery.co.uk</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <span>&#169; 2025 Clegg Joinery &#183; All rights reserved</span>
+    <a href="https://www.franks-media.co.uk" target="_blank" rel="noopener">Website by Franks Media</a>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lb" onclick="closeLb()">
+  <button class="lb-close">Close &#x2715;</button>
+  <img id="lb-img" src="" alt="">
+</div>
+
+<script>
+function toggleMenu() {
+  var btn = document.getElementById('menuBtn');
+  var nav = document.getElementById('navLinks');
+  var isOpen = nav.classList.toggle('open');
+  btn.classList.toggle('open', isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+}
+function closeMenu() {
+  document.getElementById('navLinks').classList.remove('open');
+  document.getElementById('menuBtn').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+var obs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.07 });
+document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
+
+function handleForm(e) {
+  e.preventDefault();
+  document.getElementById('form-msg').style.display = 'block';
+  e.target.querySelectorAll('input,textarea,select,button').forEach(function(el) { el.disabled = true; });
+}
+
+function openLb(src) { document.getElementById('lb-img').src = src; document.getElementById('lb').classList.add('open'); }
+function closeLb() { document.getElementById('lb').classList.remove('open'); }
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLb(); });
+
+// Gallery sliders — generic, keyed by 'ext' and 'int'
+var sliders = {
+  ext: { index: 0, trackId: 'galTrackExt', dotsId: 'galDotsExt' },
+  int: { index: 0, trackId: 'galTrackInt', dotsId: 'galDotsInt' }
+};
+function galGetPerView() { return window.innerWidth < 640 ? 1 : 2; }
+function galGoTo(key, n) {
+  var s = sliders[key];
+  var track = document.getElementById(s.trackId);
+  var items = track.querySelectorAll('.gal-slide-item');
+  var dots = document.getElementById(s.dotsId).querySelectorAll('.gal-pip');
+  var max = Math.max(0, items.length - galGetPerView());
+  s.index = Math.max(0, Math.min(n, max));
+  var slideW = items[0] ? items[0].offsetWidth + 4 : 0;
+  track.style.transform = 'translateX(-' + (s.index * slideW) + 'px)';
+  dots.forEach(function(p, i) { p.classList.toggle('active', i === s.index); });
+}
+function galStep(key, dir) { galGoTo(key, sliders[key].index + dir); }
+window.addEventListener('resize', function() {
+  Object.keys(sliders).forEach(function(key) {
+    galGoTo(key, sliders[key].index);
+  });
+});
+</script>
+</body>
+</html>
