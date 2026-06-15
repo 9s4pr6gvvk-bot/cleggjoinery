@@ -6,7 +6,647 @@
 <title>Clegg Joinery – Expert Joinery & Woodwork</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clegg Joinery – Expert Joinery & Woodwork</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --black:   #111111;
+  --dark:    #1e1e1e;
+  --charcoal:#333333;
+  --mid:     #666666;
+  --light:   #999999;
+  --rule:    #e0e0e0;
+  --bg:      #f7f7f5;
+  --white:   #ffffff;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--charcoal); overflow-x: hidden; }
+nav { background: var(--black); display: flex; align-items: center; justify-content: space-between; padding: 0 5%; height: 76px; position: sticky; top: 0; z-index: 200; }
+.nav-logo { display: flex; align-items: center; line-height: 0; flex-shrink: 0; }
+.nav-logo img { height: 48px; width: auto; display: block; mix-blend-mode: screen; }
+.nav-links { display: flex; list-style: none; height: 76px; align-items: center; gap: 4px; }
+.nav-links a { display: flex; align-items: center; padding: 0 16px; height: 100%; font-size: 0.82rem; font-weight: 400; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--white); }
+.nav-cta { background: var(--white) !important; color: var(--black) !important; font-weight: 500 !important; height: auto !important; padding: 10px 22px !important; border-radius: 2px; margin-left: 8px; font-size: 0.8rem !important; transition: opacity 0.2s !important; }
+.nav-cta:hover { opacity: 0.85; }
+.nav-phone { font-size: 0.8rem; color: rgba(255,255,255,0.45); font-weight: 300; margin-right: 4px; }
+.hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; width: 40px; height: 40px; }
+.hamburger span { display: block; width: 22px; height: 1.5px; background: var(--white); border-radius: 2px; transition: transform 0.3s ease, opacity 0.3s ease; transform-origin: center; }
+.hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* HERO */
+.hero { position: relative; height: 88vh; min-height: 520px; overflow: hidden; display: flex; align-items: center; }
+.hero-slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.8s ease; }
+.hero-slide.active { opacity: 1; }
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(247,247,245,0.92) 0%, rgba(247,247,245,0.65) 45%, rgba(247,247,245,0.1) 100%); }
+.hero-content { position: relative; z-index: 2; padding: 0 5%; max-width: 640px; }
+.hero-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mid); margin-bottom: 22px; display: block; }
+.hero h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(2.4rem, 4.8vw, 4.2rem); font-weight: 700; line-height: 1.12; color: var(--black); margin-bottom: 22px; letter-spacing: -0.025em; }
+.hero-sub { font-size: 1rem; font-weight: 300; line-height: 1.85; color: var(--mid); max-width: 460px; margin-bottom: 36px; }
+.btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-dark { display: inline-block; background: var(--black); color: var(--white); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.82rem; font-weight: 500; padding: 14px 28px; text-decoration: none; border-radius: 2px; transition: background 0.2s; }
+.btn-dark:hover { background: var(--dark); }
+.btn-outline { display: inline-block; background: transparent; color: var(--charcoal); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.82rem; font-weight: 400; padding: 13px 28px; text-decoration: none; border: 1.5px solid var(--rule); border-radius: 2px; transition: border-color 0.2s, color 0.2s; }
+.btn-outline:hover { border-color: var(--charcoal); color: var(--black); }
+.hero-dots { position: absolute; bottom: 32px; left: 5%; z-index: 3; display: flex; gap: 8px; }
+.hero-dot { width: 28px; height: 2px; background: rgba(0,0,0,0.15); border: none; cursor: pointer; padding: 0; transition: background 0.3s, width 0.3s; border-radius: 2px; }
+.hero-dot.active { background: var(--black); width: 44px; }
+
+/* STATS */
+.stats { background: var(--white); display: grid; grid-template-columns: repeat(4,1fr); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.stat { padding: 32px 5%; border-right: 1px solid var(--rule); }
+.stat:last-child { border-right: none; }
+.stat-num { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 2.2rem; font-weight: 700; line-height: 1; color: var(--black); margin-bottom: 5px; letter-spacing: -0.03em; }
+.stat-label { font-size: 0.75rem; color: var(--light); font-weight: 400; letter-spacing: 0.02em; }
+
+/* ABOUT */
+.about { display: grid; grid-template-columns: 1fr 1fr; }
+.about-img { overflow: hidden; min-height: 500px; }
+.about-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.9s ease; filter: grayscale(20%); }
+.about-img:hover img { transform: scale(1.03); }
+.about-text { padding: 80px 7%; background: var(--white); display: flex; flex-direction: column; justify-content: center; gap: 24px; border-left: 1px solid var(--rule); }
+.s-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--light); display: block; }
+h2 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(1.7rem, 2.8vw, 2.4rem); font-weight: 700; line-height: 1.15; color: var(--black); letter-spacing: -0.02em; }
+.body-text { font-size: 0.9rem; font-weight: 300; line-height: 1.9; color: var(--mid); }
+.checklist { list-style: none; display: flex; flex-direction: column; gap: 11px; padding-top: 20px; border-top: 1px solid var(--rule); }
+.checklist li { display: flex; gap: 12px; font-size: 0.85rem; font-weight: 300; color: var(--mid); line-height: 1.55; align-items: flex-start; }
+.checklist li::before { content: '–'; color: var(--light); flex-shrink: 0; font-size: 0.8rem; margin-top: 1px; }
+
+/* SERVICES */
+.services { padding: 88px 5%; background: var(--bg); }
+.sec-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 44px; gap: 20px; flex-wrap: wrap; padding-bottom: 28px; border-bottom: 1px solid var(--rule); }
+.sec-sub { font-size: 0.88rem; font-weight: 300; line-height: 1.8; color: var(--mid); max-width: 380px; }
+.svc-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+.svc-card { background: var(--white); overflow: hidden; display: flex; flex-direction: column; border: 1px solid var(--rule); transition: box-shadow 0.25s, border-color 0.25s; }
+.svc-card:hover { box-shadow: 0 6px 28px rgba(0,0,0,0.08); border-color: #ccc; }
+.svc-photo { height: 200px; overflow: hidden; flex-shrink: 0; }
+.svc-photo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(30%); transition: transform 0.6s ease, filter 0.4s; }
+.svc-card:hover .svc-photo img { transform: scale(1.05); filter: grayscale(0%); }
+.svc-body { padding: 22px 24px 26px; flex: 1; display: flex; flex-direction: column; border-top: 3px solid transparent; transition: border-color 0.25s; }
+.svc-card:hover .svc-body { border-color: var(--black); }
+.svc-num { font-size: 0.62rem; letter-spacing: 0.2em; color: var(--light); display: block; margin-bottom: 10px; }
+.svc-card h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.05rem; font-weight: 600; color: var(--black); margin-bottom: 10px; line-height: 1.25; letter-spacing: -0.01em; }
+.svc-card p { font-size: 0.82rem; font-weight: 300; line-height: 1.85; color: var(--mid); flex: 1; }
+.svc-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; font-size: 0.78rem; font-weight: 500; color: var(--black); text-decoration: none; border-bottom: 1px solid var(--rule); padding-bottom: 2px; align-self: flex-start; transition: border-color 0.2s, gap 0.2s; }
+.svc-card:hover .svc-link { border-color: var(--black); gap: 10px; }
+
+/* GALLERY - unified slider */
+.gallery { padding: 0 0 88px; background: var(--bg); }
+.gal-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 28px; flex-wrap: wrap; gap: 16px; padding: 0 5% 28px; border-bottom: 1px solid var(--rule); }
+.gal-track-wrap { position: relative; overflow: hidden; }
+.gal-track { display: flex; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); will-change: transform; }
+.gal-slide-item { flex: 0 0 calc(50% - 2px); height: 420px; overflow: hidden; cursor: zoom-in; }
+.gal-slide-item:not(:last-child) { margin-right: 4px; }
+.gal-slide-item img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(20%); transition: transform 0.55s ease, filter 0.4s; }
+.gal-slide-item:hover img { transform: scale(1.04); filter: grayscale(0%); }
+.gal-controls { display: flex; align-items: center; justify-content: space-between; margin-top: 20px; padding: 0 5%; }
+.gal-dots { display: flex; gap: 6px; }
+.gal-pip { width: 28px; height: 3px; border-radius: 2px; background: var(--rule); border: none; padding: 0; cursor: pointer; transition: background 0.2s, width 0.2s; }
+.gal-pip.active { background: var(--black); width: 44px; }
+.gal-arrows { display: flex; gap: 8px; }
+.gal-arrow { width: 40px; height: 40px; border: 1.5px solid var(--rule); border-radius: 2px; background: var(--white); color: var(--black); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s, border-color 0.2s; }
+.gal-arrow:hover { background: var(--black); border-color: var(--black); color: var(--white); }
+.gal-arrow svg { width: 16px; height: 16px; }
+
+/* REVIEWS */
+.reviews { padding: 88px 5%; background: var(--white); border-top: 1px solid var(--rule); }
+.rev-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 44px; gap: 20px; flex-wrap: wrap; padding-bottom: 28px; border-bottom: 1px solid var(--rule); }
+.rating-badge { display: flex; align-items: center; gap: 14px; background: var(--bg); border: 1px solid var(--rule); border-radius: 4px; padding: 12px 18px; }
+.rating-info { display: flex; flex-direction: column; gap: 5px; }
+.stars { display: flex; gap: 3px; }
+.star { width: 12px; height: 12px; background: #f4a100; clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%); }
+.rating-label { font-size: 0.65rem; color: var(--light); letter-spacing: 0.08em; text-transform: uppercase; }
+.rev-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+.rev-card { background: var(--bg); border: 1px solid var(--rule); padding: 28px; display: flex; flex-direction: column; gap: 16px; transition: box-shadow 0.2s; }
+.rev-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+.rev-stars { display: flex; gap: 3px; }
+.rev-text { font-size: 0.88rem; font-weight: 300; line-height: 1.85; color: var(--mid); flex: 1; }
+.rev-author { display: flex; align-items: center; gap: 12px; padding-top: 16px; border-top: 1px solid var(--rule); }
+.rev-av { width: 38px; height: 38px; border-radius: 50%; background: var(--black); display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 500; color: var(--white); flex-shrink: 0; }
+.rev-name { font-size: 0.82rem; font-weight: 500; color: var(--black); }
+.rev-src { font-size: 0.68rem; color: var(--light); margin-top: 2px; display: flex; align-items: center; gap: 5px; }
+
+/* CTA */
+.cta { background: var(--black); padding: 72px 5%; display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+.cta h2 { color: var(--white); max-width: 520px; font-size: clamp(1.8rem, 3vw, 2.6rem); }
+.cta-btns { display: flex; gap: 12px; flex-wrap: wrap; flex-shrink: 0; }
+.btn-white { display: inline-block; background: var(--white); color: var(--black); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.82rem; font-weight: 500; padding: 14px 28px; text-decoration: none; border-radius: 2px; transition: opacity 0.2s; }
+.btn-white:hover { opacity: 0.85; }
+.btn-white-outline { display: inline-block; background: transparent; color: rgba(255,255,255,0.65); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.82rem; font-weight: 400; padding: 13px 28px; text-decoration: none; border: 1.5px solid rgba(255,255,255,0.2); border-radius: 2px; transition: border-color 0.2s, color 0.2s; }
+.btn-white-outline:hover { border-color: rgba(255,255,255,0.55); color: var(--white); }
+
+/* CONTACT */
+.contact { display: grid; grid-template-columns: 1fr 1.6fr; border-top: 1px solid var(--rule); }
+.c-info { padding: 64px 6%; background: var(--bg); border-right: 1px solid var(--rule); display: flex; flex-direction: column; gap: 28px; }
+.c-item { display: flex; align-items: flex-start; gap: 14px; }
+.c-icon { width: 38px; height: 38px; background: var(--black); border-radius: 2px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+.c-icon svg { width: 16px; height: 16px; stroke: var(--white); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.c-item-text { display: flex; flex-direction: column; gap: 2px; }
+.c-lbl { font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--light); display: block; font-weight: 500; }
+.c-val { font-size: 0.9rem; font-weight: 400; color: var(--charcoal); line-height: 1.6; }
+.c-val a { color: var(--charcoal); text-decoration: none; }
+.c-val a:hover { color: var(--black); text-decoration: underline; }
+.locations-wrap { padding-top: 14px; border-top: 1px solid var(--rule); }
+.locations-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.loc-tag { font-size: 0.75rem; font-weight: 400; color: var(--mid); background: var(--white); border: 1px solid var(--rule); padding: 5px 12px; border-radius: 20px; }
+.c-form { padding: 64px 6%; background: var(--white); }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 24px; }
+.f-field { display: flex; flex-direction: column; gap: 6px; }
+.f-field.full { grid-column: span 2; }
+.f-field label { font-size: 0.75rem; font-weight: 500; color: var(--charcoal); }
+.f-field input, .f-field select, .f-field textarea { background: var(--bg); border: 1.5px solid var(--rule); border-radius: 2px; padding: 11px 13px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.88rem; font-weight: 300; color: var(--black); outline: none; transition: border-color 0.2s, background 0.2s; width: 100%; -webkit-appearance: none; }
+.f-field input::placeholder, .f-field textarea::placeholder { color: #bbb; }
+.f-field input:focus, .f-field select:focus, .f-field textarea:focus { border-color: var(--black); background: var(--white); }
+.f-field select { cursor: pointer; }
+.f-field textarea { resize: vertical; min-height: 100px; }
+.f-submit { grid-column: span 2; width: 100%; padding: 14px; background: var(--black); color: var(--white); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.85rem; font-weight: 500; border: none; border-radius: 2px; cursor: pointer; transition: background 0.2s; margin-top: 2px; }
+.f-submit:hover { background: var(--dark); }
+.f-ok { grid-column: span 2; display: none; padding: 12px; background: #f0f5f0; border: 1px solid #c0d8c0; border-radius: 2px; color: #3a5e3a; font-size: 0.85rem; text-align: center; }
+
+/* FOOTER */
+footer { background: var(--black); }
+.ft-inner { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.ft-col { padding: 52px 5%; }
+.ft-logo img { height: 48px; width: auto; display: block; mix-blend-mode: screen; margin-bottom: 18px; }
+.ft-desc { font-size: 0.8rem; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.3); max-width: 260px; }
+.ft-title { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.4); display: block; margin-bottom: 18px; }
+.ft-col ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+.ft-col a { font-size: 0.82rem; font-weight: 300; color: rgba(255,255,255,0.3); text-decoration: none; transition: color 0.2s; }
+.ft-col a:hover { color: rgba(255,255,255,0.75); }
+.ft-bottom { padding: 18px 5%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+.ft-bottom span, .ft-bottom a { font-size: 0.72rem; color: rgba(255,255,255,0.2); text-decoration: none; font-weight: 300; }
+
+/* LIGHTBOX */
+.lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 1000; display: none; align-items: center; justify-content: center; }
+.lightbox.open { display: flex; }
+.lightbox img { max-width: 90vw; max-height: 88vh; object-fit: contain; }
+.lb-close { position: absolute; top: 22px; right: 28px; background: none; border: none; color: rgba(255,255,255,0.5); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: color 0.2s; }
+.lb-close:hover { color: #fff; }
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.65s ease, transform 0.65s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+/* RESPONSIVE */
+@media (max-width: 1080px) {
+  .ft-inner { grid-template-columns: 1fr 1fr; }
+  .ft-col:nth-child(2) { border-right: none; }
+  .ft-col:nth-child(3), .ft-col:nth-child(4) { border-top: 1px solid rgba(255,255,255,0.08); }
+  .ft-col:nth-child(4) { border-right: none; }
+  .svc-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 860px) {
+  .about { grid-template-columns: 1fr; }
+  .about-img { min-height: 280px; }
+  .about-text { border-left: none; border-top: 1px solid var(--rule); }
+  .contact { grid-template-columns: 1fr; }
+  .c-info { border-right: none; border-bottom: 1px solid var(--rule); padding: 52px 5%; }
+  .c-form { padding: 52px 5%; }
+  .rev-grid { grid-template-columns: 1fr; }
+  .stats { grid-template-columns: 1fr 1fr; }
+  .stat:nth-child(2) { border-right: none; }
+  .stat:nth-child(3), .stat:nth-child(4) { border-top: 1px solid var(--rule); }
+  .stat:nth-child(4) { border-right: none; }
+  .cta { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 640px) {
+  nav { padding: 0 5%; }
+  .nav-phone { display: none; }
+  .hamburger { display: flex; }
+  .nav-links {
+    display: none;
+    position: fixed;
+    top: 76px; left: 0; right: 0; bottom: 0;
+    background: var(--black);
+    flex-direction: column;
+    height: auto;
+    z-index: 199;
+    padding: 8px 0 40px;
+    overflow-y: auto;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .nav-links.open { display: flex; }
+  .nav-links li { width: 100%; }
+  .nav-links a {
+    padding: 18px 6%;
+    height: auto;
+    font-size: 1rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.7);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    justify-content: space-between;
+    letter-spacing: 0;
+  }
+  .nav-links a::after { content: '→'; font-size: 0.9rem; color: rgba(255,255,255,0.25); }
+  .nav-links a:hover { color: var(--white); background: rgba(255,255,255,0.04); }
+  .nav-links li:last-child a { border-bottom: none; }
+  .nav-cta {
+    background: var(--white) !important;
+    color: var(--black) !important;
+    margin: 24px 6% 0 !important;
+    padding: 16px 24px !important;
+    border-radius: 2px !important;
+    font-size: 0.88rem !important;
+    font-weight: 600 !important;
+    text-align: center;
+    justify-content: center !important;
+    height: auto !important;
+  }
+  .nav-cta::after { display: none !important; }
+  .svc-grid { grid-template-columns: 1fr; }
+  .form-grid { grid-template-columns: 1fr; }
+  .f-field.full, .f-submit, .f-ok { grid-column: span 1; }
+  .ft-inner { grid-template-columns: 1fr; }
+  .ft-col { border-right: none; border-top: 1px solid rgba(255,255,255,0.08); padding: 32px 5%; }
+  .ft-col:first-child { border-top: none; }
+  .services, .gallery, .reviews, .cta { padding-left: 5%; padding-right: 5%; }
+  .about-text, .c-info, .c-form { padding-left: 5%; padding-right: 5%; }
+  .ft-bottom { padding: 14px 5%; }
+  .hero h1 { font-size: 2.4rem; }
+
+  /* MOBILE HERO — stronger overlay so text is always legible */
+  .hero-overlay {
+    background: linear-gradient(
+      to bottom,
+      rgba(247,247,245,0.88) 0%,
+      rgba(247,247,245,0.82) 50%,
+      rgba(247,247,245,0.65) 100%
+    );
+  }
+  .hero-label { color: var(--charcoal); }
+  .hero-sub { color: var(--charcoal); }
+
+  .gal-slide-item { flex: 0 0 calc(82vw); height: 280px; }
+  .gallery { padding-left: 0; padding-right: 0; }
+  .gal-header { padding-left: 5%; padding-right: 5%; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo"><img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/clegg%20logo%202.png" alt="Clegg Joinery"></a>
+  <button class="hamburger" id="menuBtn" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+  <ul class="nav-links" id="navLinks">
+    <li class="nav-phone"><a href="tel:07926646925" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:6px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11 19.79 19.79 0 010 2.38 2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>07926 646925</a></li>
+    <li><a href="#about" onclick="closeMenu()">About</a></li>
+    <li><a href="#services" onclick="closeMenu()">Services</a></li>
+    <li><a href="#gallery" onclick="closeMenu()">Gallery</a></li>
+    <li><a href="#reviews" onclick="closeMenu()">Reviews</a></li>
+    <li><a href="#contact" class="nav-cta" onclick="closeMenu()">Free Quote</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-slide active" style="background-image:url('https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/518345103_1286965949885427_1187104504117968155_n.jpg')"></div>
+  <div class="hero-slide" style="background-image:url('https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/476437298_1560730624631588_8337025387259448653_n.jpg')"></div>
+  <div class="hero-slide" style="background-image:url('https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/541146278_1320425463206142_266504905366314717_n.jpg')"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-label">Expert Joinery &amp; Woodwork</span>
+    <h1>Bespoke joinery<br>crafted to last.</h1>
+    <p class="hero-sub">From fitted kitchens and staircases to doors, windows and bespoke furniture &#8212; Clegg Joinery delivers outstanding work for homes and businesses across the region.</p>
+    <div class="btn-row">
+      <a href="#contact" class="btn-dark">Get a Free Quote</a>
+      <a href="#gallery" class="btn-outline">View Our Work</a>
+    </div>
+  </div>
+  <div class="hero-dots">
+    <button class="hero-dot active" onclick="goSlide(0)"></button>
+    <button class="hero-dot" onclick="goSlide(1)"></button>
+    <button class="hero-dot" onclick="goSlide(2)"></button>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat reveal"><div class="stat-num">15+</div><div class="stat-label">Years experience</div></div>
+  <div class="stat reveal" style="transition-delay:.06s"><div class="stat-num">500+</div><div class="stat-label">Projects completed</div></div>
+  <div class="stat reveal" style="transition-delay:.12s"><div class="stat-num">100%</div><div class="stat-label">Satisfaction guaranteed</div></div>
+  <div class="stat reveal" style="transition-delay:.18s"><div class="stat-num">5&#9733;</div><div class="stat-label">Facebook rated</div></div>
+</div>
+
+<!-- ABOUT -->
+<div class="about" id="about">
+  <div class="about-img">
+    <img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/568351433_1365561845359170_1210440652222654133_n.jpg" alt="Clegg Joinery craftsmanship">
+  </div>
+  <div class="about-text reveal">
+    <span class="s-label">About Clegg Joinery</span>
+    <h2>Traditional craftsmanship,<br>modern results.</h2>
+    <p class="body-text">A trusted, family-run joinery business delivering outstanding bespoke woodwork for domestic and commercial clients. Every project is completed with the same pride, precision and passion for the craft.</p>
+    <ul class="checklist">
+      <li>All joinery designed and made to your exact specification</li>
+      <li>Domestic and commercial work throughout the region</li>
+      <li>Reliable, punctual and professional on every job</li>
+      <li>Clean and respectful of your home or business</li>
+      <li>Competitive pricing with no hidden costs</li>
+    </ul>
+    <div><a href="#contact" class="btn-dark">Request a Free Quote</a></div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="sec-header reveal">
+    <div>
+      <span class="s-label" style="display:block;margin-bottom:10px">What We Do</span>
+      <h2>Our services</h2>
+    </div>
+    <p class="sec-sub">From structural timber work to the finest finishing details &#8212; a complete range of bespoke joinery solutions.</p>
+  </div>
+  <div class="svc-grid">
+    <div class="svc-card reveal">
+      <div class="svc-photo"><img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/561832653_1365559432026078_3632655305355833405_n.jpg" alt="Doors and Windows"></div>
+      <div class="svc-body"><span class="svc-num">01</span><h3>Doors &amp; Windows</h3><p>Bespoke timber doors and window frames crafted and fitted to the highest standard, improving aesthetics and energy efficiency.</p><a href="doors.html" class="svc-link">Find out more &#8594;</a></div>
+    </div>
+    <div class="svc-card reveal" style="transition-delay:.05s">
+      <div class="svc-photo"><img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/568351433_1365561845359170_1210440652222654133_n.jpg" alt="Fitted Kitchens"></div>
+      <div class="svc-body"><span class="svc-num">02</span><h3>Fitted Kitchens</h3><p>Beautifully designed and expertly fitted kitchen joinery &#8212; from cabinets and worktops to bespoke storage solutions tailored to your space.</p><a href="kitchens.html" class="svc-link">Find out more &#8594;</a></div>
+    </div>
+    <div class="svc-card reveal" style="transition-delay:.1s">
+      <div class="svc-photo"><img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/518345103_1286965949885427_1187104504117968155_n.jpg" alt="Interior Joinery"></div>
+      <div class="svc-body"><span class="svc-num">03</span><h3>Interior Joinery</h3><p>Bespoke interior woodwork &#8212; staircases, alcove units, shelving and made-to-measure furniture crafted to complement any space.</p><a href="interior.html" class="svc-link">Find out more &#8594;</a></div>
+    </div>
+    <div class="svc-card reveal" style="transition-delay:.15s">
+      <div class="svc-photo"><img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/613176566_1432294858685868_5575951717679272650_n.jpg" alt="Flooring"></div>
+      <div class="svc-body"><span class="svc-num">04</span><h3>Flooring</h3><p>Quality timber flooring supplied and fitted &#8212; hardwood, engineered wood and laminate installed to a beautiful, lasting finish.</p><a href="flooring.html" class="svc-link">Find out more &#8594;</a></div>
+    </div>
+    <div class="svc-card reveal" style="transition-delay:.2s">
+      <div class="svc-photo"><img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/518388876_1287014116547277_5333059056139120176_n.jpg" alt="Fitted Furniture"></div>
+      <div class="svc-body"><span class="svc-num">05</span><h3>Fitted Furniture</h3><p>Made-to-measure wardrobes, shelving and alcove furniture crafted to maximise your space and complement your interior.</p><a href="interior.html" class="svc-link">Find out more &#8594;</a></div>
+    </div>
+    <div class="svc-card reveal" style="transition-delay:.25s">
+      <div class="svc-photo"><img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/541146278_1320425463206142_266504905366314717_n.jpg" alt="Commercial Joinery"></div>
+      <div class="svc-body"><span class="svc-num">06</span><h3>Commercial Joinery</h3><p>Professional joinery for offices, retail spaces and commercial premises &#8212; delivered on time to strict specifications.</p><a href="commercial.html" class="svc-link">Find out more &#8594;</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="gal-header reveal">
+    <div>
+      <span class="s-label" style="display:block;margin-bottom:10px">Our Work</span>
+      <h2>Recent projects</h2>
+    </div>
+    <a href="#contact" class="btn-dark">Discuss Your Project</a>
+  </div>
+
+  <!-- Unified slider -->
+  <div class="gal-track-wrap">
+    <div class="gal-track" id="galTrack">
+      <div class="gal-slide-item" onclick="openLb(this.querySelector('img').src)"><img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/518345103_1286965949885427_1187104504117968155_n.jpg" alt="Project"></div>
+      <div class="gal-slide-item" onclick="openLb(this.querySelector('img').src)"><img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/476437298_1560730624631588_8337025387259448653_n.jpg" alt="Project"></div>
+      <div class="gal-slide-item" onclick="openLb(this.querySelector('img').src)"><img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/613176566_1432294858685868_5575951717679272650_n.jpg" alt="Project"></div>
+      <div class="gal-slide-item" onclick="openLb(this.querySelector('img').src)"><img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/561832653_1365559432026078_3632655305355833405_n.jpg" alt="Project"></div>
+      <div class="gal-slide-item" onclick="openLb(this.querySelector('img').src)"><img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/518388876_1287014116547277_5333059056139120176_n.jpg" alt="Project"></div>
+    </div>
+  </div>
+  <div class="gal-controls">
+    <div class="gal-dots" id="galDots">
+      <button class="gal-pip active" onclick="galGoTo(0)"></button>
+      <button class="gal-pip" onclick="galGoTo(1)"></button>
+      <button class="gal-pip" onclick="galGoTo(2)"></button>
+      <button class="gal-pip" onclick="galGoTo(3)"></button>
+    </div>
+    <div class="gal-arrows">
+      <button class="gal-arrow" onclick="galStep(-1)" aria-label="Previous">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="gal-arrow" onclick="galStep(1)" aria-label="Next">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="rev-header">
+    <div class="reveal">
+      <span class="s-label" style="display:block;margin-bottom:10px">Client Reviews</span>
+      <h2>What our customers say</h2>
+    </div>
+    <div class="rating-badge reveal" style="transition-delay:.07s">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      <div class="rating-info">
+        <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+        <div class="rating-label">Facebook Recommended</div>
+      </div>
+    </div>
+  </div>
+  <div class="rev-grid">
+    <div class="rev-card reveal">
+      <div class="rev-stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+      <p class="rev-text">"A fastidious joiner who we can't recommend highly enough. Done lots of work for us including new UPVC windows and door, new oak internal doors, staircase handrail and spindles. All work carried out to the highest standard and very reasonable price. He puts you in his diary and starts when he says he will. We won't use anyone else now."</p>
+      <div class="rev-author">
+        <div class="rev-av">AC</div>
+        <div><div class="rev-name">Alan Corner</div><div class="rev-src"><svg width="11" height="11" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg> Recommends Clegg Joinery</div></div>
+      </div>
+    </div>
+    <div class="rev-card reveal" style="transition-delay:.07s">
+      <div class="rev-stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+      <p class="rev-text">"Anthony transformed our old tired dining space into a lovely open kitchen / family space. He worked hard to ensure as little disruption as possible and was tidy and very reliable. We love our new kitchen and would recommend Cleggy to anyone looking to get their kitchen done. Thanks again."</p>
+      <div class="rev-author">
+        <div class="rev-av">VS</div>
+        <div><div class="rev-name">Vicky Sykes</div><div class="rev-src"><svg width="11" height="11" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg> Recommends Clegg Joinery</div></div>
+      </div>
+    </div>
+    <div class="rev-card reveal" style="transition-delay:.14s">
+      <div class="rev-stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+      <p class="rev-text">"Tony has now done two lots of work for us, kitchen cupboards and some outdoor fencing. Both have been carried out to a very high standard at very reasonable prices. He's a really nice bloke too and clears up fully afterwards. Would recommend!"</p>
+      <div class="rev-author">
+        <div class="rev-av">DH</div>
+        <div><div class="rev-name">Danielle Hampson-Ward</div><div class="rev-src"><svg width="11" height="11" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg> Recommends Clegg Joinery</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta reveal">
+  <h2>Ready to start your project?<br>Get a free quote today.</h2>
+  <div class="cta-btns">
+    <a href="#contact" class="btn-white">Contact Us Now</a>
+    <a href="mailto:info@cleggjoinery.co.uk" class="btn-white-outline">Send an Email</a>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="contact" id="contact">
+  <div class="c-info reveal">
+    <div>
+      <span class="s-label" style="display:block;margin-bottom:10px">Get in Touch</span>
+      <h2 style="margin-bottom:14px">Get a free quote</h2>
+      <p class="body-text">We cover Slaithwaite, Huddersfield and all surrounding areas. Get in touch and we'll get back to you the same day.</p>
+    </div>
+    <div>
+      <div class="c-item"><div class="c-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11 19.79 19.79 0 0 0 .0 2.38 2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div><div class="c-item-text"><span class="c-lbl">Phone</span><span class="c-val"><a href="tel:07926646925">07926 646925</a></span></div></div>
+      <div class="c-item"><div class="c-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="c-item-text"><span class="c-lbl">Email</span><span class="c-val"><a href="mailto:info@cleggjoinery.co.uk">info@cleggjoinery.co.uk</a></span></div></div>
+    </div>
+    <div class="locations-wrap">
+      <span class="c-lbl">Areas We Cover</span>
+      <div class="locations-grid">
+        <span class="loc-tag">Slaithwaite</span>
+        <span class="loc-tag">Huddersfield</span>
+        <span class="loc-tag">Marsden</span>
+        <span class="loc-tag">Meltham</span>
+        <span class="loc-tag">Holmfirth</span>
+        <span class="loc-tag">Golcar</span>
+        <span class="loc-tag">Lindley</span>
+        <span class="loc-tag">Milnsbridge</span>
+        <span class="loc-tag">Honley</span>
+        <span class="loc-tag">Kirkburton</span>
+        <span class="loc-tag">&amp; surrounding areas</span>
+      </div>
+    </div>
+  </div>
+  <div class="c-form reveal" style="transition-delay:.07s">
+    <form onsubmit="handleForm(event)" autocomplete="off">
+      <div class="form-grid">
+        <div class="f-field"><label>First Name</label><input type="text" placeholder="John" required></div>
+        <div class="f-field"><label>Last Name</label><input type="text" placeholder="Smith" required></div>
+        <div class="f-field full"><label>Phone Number</label><input type="tel" placeholder="07700 000000"></div>
+        <div class="f-field full"><label>Email Address</label><input type="email" placeholder="john@example.com" required></div>
+        <div class="f-field full"><label>Service Required</label>
+          <select>
+            <option value="">Please select...</option>
+            <option>Doors &amp; Windows</option>
+            <option>Fitted Kitchen</option>
+            <option>Interior Joinery</option>
+            <option>Flooring</option>
+            <option>Fitted Furniture</option>
+            <option>Commercial Joinery</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="f-field full"><label>Project Details</label><textarea placeholder="Tell us a little about your project..."></textarea></div>
+        <button type="submit" class="f-submit">Send Enquiry</button>
+        <div class="f-ok" id="form-msg">&#10003; Thank you &#8212; we'll be in touch shortly.</div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-inner">
+    <div class="ft-col">
+      <div class="ft-logo"><img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/clegg%20logo%202.png" alt="Clegg Joinery"></div>
+      <p class="ft-desc">Expert joinery and bespoke carpentry for domestic and commercial clients across Slaithwaite, Huddersfield and the surrounding region.</p>
+    </div>
+    <div class="ft-col">
+      <span class="ft-title">Services</span>
+      <ul>
+        <li><a href="#services">Doors &amp; Windows</a></li>
+        <li><a href="#services">Fitted Kitchens</a></li>
+        <li><a href="#services">Interior Joinery</a></li>
+        <li><a href="#services">Flooring</a></li>
+        <li><a href="#services">Fitted Furniture</a></li>
+        <li><a href="#services">Commercial</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <span class="ft-title">Company</span>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#contact">Get a Quote</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <span class="ft-title">Contact</span>
+      <ul>
+        <li><a href="tel:07926646925">07926 646925</a></li>
+        <li><a href="mailto:info@cleggjoinery.co.uk">info@cleggjoinery.co.uk</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <span>&#169; 2025 Clegg Joinery &#183; All rights reserved</span>
+    <a href="https://www.franks-media.co.uk" target="_blank" rel="noopener">Website by Franks Media</a>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lb" onclick="closeLb()">
+  <button class="lb-close">Close &#x2715;</button>
+  <img id="lb-img" src="" alt="">
+</div>
+
+<script>
+function toggleMenu() {
+  var btn = document.getElementById('menuBtn');
+  var nav = document.getElementById('navLinks');
+  var isOpen = nav.classList.toggle('open');
+  btn.classList.toggle('open', isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+}
+function closeMenu() {
+  document.getElementById('navLinks').classList.remove('open');
+  document.getElementById('menuBtn').classList.remove('open');
+  document.body.style.overflow = '';
+}
+var cur = 0;
+var slides = document.querySelectorAll('.hero-slide');
+var dots = document.querySelectorAll('.hero-dot');
+function goSlide(n) {
+  slides[cur].classList.remove('active');
+  dots[cur].classList.remove('active');
+  cur = n;
+  slides[cur].classList.add('active');
+  dots[cur].classList.add('active');
+}
+setInterval(function(){ goSlide((cur + 1) % slides.length); }, 5500);
+
+var obs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.07 });
+document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
+
+function handleForm(e) {
+  e.preventDefault();
+  document.getElementById('form-msg').style.display = 'block';
+  e.target.querySelectorAll('input,textarea,select,button').forEach(function(el) { el.disabled = true; });
+}
+
+function openLb(src) { document.getElementById('lb-img').src = src; document.getElementById('lb').classList.add('open'); }
+function closeLb() { document.getElementById('lb').classList.remove('open'); }
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLb(); });
+
+// Gallery slider
+var galIndex = 0;
+var galTrack = document.getElementById('galTrack');
+var galPips = document.querySelectorAll('.gal-pip');
+var galItems = galTrack ? galTrack.querySelectorAll('.gal-slide-item') : [];
+var galPerView = window.innerWidth < 640 ? 1 : 2;
+
+function galGetPerView() { return window.innerWidth < 640 ? 1 : 2; }
+function galMaxIndex() { return Math.max(0, galItems.length - galGetPerView()); }
+function galGoTo(n) {
+  galIndex = Math.max(0, Math.min(n, galMaxIndex()));
+  var slideW = galItems[0] ? galItems[0].offsetWidth + 4 : 0;
+  galTrack.style.transform = 'translateX(-' + (galIndex * slideW) + 'px)';
+  galPips.forEach(function(p, i) { p.classList.toggle('active', i === galIndex); });
+}
+function galStep(dir) { galGoTo(galIndex + dir); }
+window.addEventListener('resize', function() { galGoTo(Math.min(galIndex, galMaxIndex())); });
+</script>
+</body>
+</html>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
   --black:   #111111;
