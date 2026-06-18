@@ -62,6 +62,14 @@ nav { background: var(--black); display: flex; align-items: center; justify-cont
 .intro-img img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(15%); transition: transform 0.9s ease; }
 .intro-img:hover img { transform: scale(1.03); }
 
+/* UNDERFLOOR HEATING */
+.ufh-section { background: var(--white); border-top: 1px solid var(--rule); }
+.ufh-grid { display: grid; grid-template-columns: 1fr 1fr; }
+.ufh-text { padding: 72px 7%; display: flex; flex-direction: column; gap: 22px; justify-content: center; border-right: 1px solid var(--rule); }
+.ufh-img { overflow: hidden; min-height: 480px; }
+.ufh-img img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(15%); transition: transform 0.9s ease; }
+.ufh-img:hover img { transform: scale(1.03); }
+
 /* FLOOR TYPES */
 .types { padding: 88px 5%; background: var(--bg); }
 .types-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 44px; }
@@ -195,6 +203,9 @@ footer { background: var(--black); }
   .intro { grid-template-columns: 1fr; }
   .intro-text { border-right: none; border-bottom: 1px solid var(--rule); }
   .intro-img { min-height: 300px; }
+  .ufh-grid { grid-template-columns: 1fr; }
+  .ufh-text { border-right: none; border-bottom: 1px solid var(--rule); }
+  .ufh-img { min-height: 300px; }
   .contact { grid-template-columns: 1fr; }
   .c-info { border-right: none; border-bottom: 1px solid var(--rule); padding: 52px 5%; }
   .c-form { padding: 52px 5%; }
@@ -332,9 +343,9 @@ footer { background: var(--black); }
 </section>
 
 <!-- UNDERFLOOR HEATING -->
-<div style="background:var(--white);border-top:1px solid var(--rule);">
-  <div style="display:grid;grid-template-columns:1fr 1fr;">
-    <div style="padding:72px 7%;display:flex;flex-direction:column;gap:22px;justify-content:center;border-right:1px solid var(--rule);">
+<div class="ufh-section">
+  <div class="ufh-grid">
+    <div class="ufh-text">
       <span class="s-label reveal">Also Available</span>
       <h2 class="reveal">Underfloor heating — electric &amp; wet systems.</h2>
       <p class="body-text reveal">We supply and install underfloor heating before laying your chosen floor — so everything is handled by one tradesman, fitted correctly from the ground up.</p>
@@ -348,8 +359,8 @@ footer { background: var(--black); }
       </ul>
       <div class="reveal"><a href="#contact" class="btn-dark">Get a Quote</a></div>
     </div>
-    <div style="overflow:hidden;min-height:480px;">
-      <img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/541146278_1320425463206142_266504905366314717_n.jpg" alt="Underfloor heating" style="width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(15%);transition:transform 0.9s ease;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+    <div class="ufh-img">
+      <img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/541146278_1320425463206142_266504905366314717_n.jpg" alt="Underfloor heating">
     </div>
   </div>
 </div>
