@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page Not Found – Clegg Joinery</title>
+<meta name="robots" content="noindex, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --black:   #111111;
+  --dark:    #1e1e1e;
+  --charcoal:#333333;
+  --mid:     #666666;
+  --light:   #999999;
+  --rule:    #e0e0e0;
+  --bg:      #f7f7f5;
+  --white:   #ffffff;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--charcoal); overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
+
+/* NAV */
+nav { background: var(--black); display: flex; align-items: center; justify-content: space-between; padding: 0 5%; height: 76px; position: sticky; top: 0; z-index: 200; }
+.nav-logo { display: flex; align-items: center; line-height: 0; flex-shrink: 0; }
+.nav-logo img { height: 48px; width: auto; display: block; mix-blend-mode: screen; }
+.nav-links { display: flex; list-style: none; height: 76px; align-items: center; gap: 4px; }
+.nav-links a { display: flex; align-items: center; padding: 0 16px; height: 100%; font-size: 0.82rem; font-weight: 400; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--white); }
+.nav-cta { background: var(--white) !important; color: var(--black) !important; font-weight: 500 !important; height: auto !important; padding: 10px 22px !important; border-radius: 2px; margin-left: 8px; font-size: 0.8rem !important; transition: opacity 0.2s !important; }
+.nav-cta:hover { opacity: 0.85; }
+.nav-phone { font-size: 0.8rem; color: rgba(255,255,255,0.45); font-weight: 300; margin-right: 4px; }
+.hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; width: 40px; height: 40px; }
+.hamburger span { display: block; width: 22px; height: 1.5px; background: var(--white); border-radius: 2px; transition: transform 0.3s ease, opacity 0.3s ease; transform-origin: center; }
+.hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* ERROR BODY */
+.err { flex: 1; display: grid; grid-template-columns: 1.1fr 1fr; align-items: stretch; }
+.err-text { padding: 88px 7%; display: flex; flex-direction: column; justify-content: center; gap: 22px; background: var(--white); border-right: 1px solid var(--rule); }
+.err-code { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--light); display: block; }
+.err-text h1 { font-size: clamp(2.2rem, 4vw, 3.4rem); font-weight: 700; line-height: 1.12; color: var(--black); letter-spacing: -0.025em; }
+.err-sub { font-size: 0.95rem; font-weight: 300; line-height: 1.85; color: var(--mid); max-width: 440px; }
+.err-btns { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 4px; }
+.btn-dark { display: inline-block; background: var(--black); color: var(--white); font-size: 0.82rem; font-weight: 500; padding: 14px 28px; text-decoration: none; border-radius: 2px; transition: background 0.2s; }
+.btn-dark:hover { background: var(--dark); }
+.btn-outline { display: inline-block; background: transparent; color: var(--charcoal); font-size: 0.82rem; font-weight: 400; padding: 13px 28px; text-decoration: none; border: 1.5px solid var(--rule); border-radius: 2px; transition: border-color 0.2s, color 0.2s; }
+.btn-outline:hover { border-color: var(--charcoal); color: var(--black); }
+
+/* LINK LIST */
+.err-links { padding-top: 26px; border-top: 1px solid var(--rule); }
+.err-links-title { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--light); display: block; margin-bottom: 16px; }
+.err-links-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 24px; }
+.err-links-grid a { font-size: 0.85rem; font-weight: 300; color: var(--mid); text-decoration: none; display: flex; align-items: center; gap: 8px; transition: color 0.2s, gap 0.2s; }
+.err-links-grid a::after { content: '→'; font-size: 0.8rem; color: var(--rule); transition: color 0.2s; }
+.err-links-grid a:hover { color: var(--black); gap: 12px; }
+.err-links-grid a:hover::after { color: var(--black); }
+
+/* IMAGE SIDE */
+.err-img { position: relative; overflow: hidden; min-height: 520px; }
+.err-img img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(25%); }
+.err-img-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(17,17,17,0.5) 0%, rgba(17,17,17,0.05) 60%); }
+
+/* FOOTER */
+footer { background: var(--black); }
+.ft-bottom { padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+.ft-bottom span, .ft-bottom a { font-size: 0.72rem; color: rgba(255,255,255,0.2); text-decoration: none; font-weight: 300; }
+.ft-bottom a:hover { color: rgba(255,255,255,0.5); }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .err { grid-template-columns: 1fr; }
+  .err-text { border-right: none; border-bottom: 1px solid var(--rule); padding: 64px 6%; }
+  .err-img { min-height: 280px; }
+}
+@media (max-width: 640px) {
+  .nav-phone { display: none; }
+  .hamburger { display: flex; }
+  .nav-links { display: none; position: fixed; top: 76px; left: 0; right: 0; bottom: 0; background: var(--black); flex-direction: column; height: auto; z-index: 199; padding: 8px 0 40px; overflow-y: auto; border-top: 1px solid rgba(255,255,255,0.08); }
+  .nav-links.open { display: flex; }
+  .nav-links li { width: 100%; }
+  .nav-links a { padding: 18px 6%; height: auto; font-size: 1rem; font-weight: 500; color: rgba(255,255,255,0.7); border-bottom: 1px solid rgba(255,255,255,0.06); justify-content: space-between; }
+  .nav-links a::after { content: '→'; font-size: 0.9rem; color: rgba(255,255,255,0.25); }
+  .nav-links li:last-child a { border-bottom: none; }
+  .nav-cta { margin: 24px 6% 0 !important; padding: 16px 24px !important; font-size: 0.88rem !important; font-weight: 600 !important; text-align: center; justify-content: center !important; }
+  .nav-cta::after { display: none !important; }
+  .err-text { padding: 52px 5%; }
+  .err-links-grid { grid-template-columns: 1fr; }
+  .err-text h1 { font-size: 2rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo"><img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/clegg%20logo%202.png" alt="Clegg Joinery"></a>
+  <button class="hamburger" id="menuBtn" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+  <ul class="nav-links" id="navLinks">
+    <li class="nav-phone"><a href="tel:07926646925" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:6px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11 19.79 19.79 0 010 2.38 2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>07926 646925</a></li>
+    <li><a href="/#about" onclick="closeMenu()">About</a></li>
+    <li><a href="/#services" onclick="closeMenu()">Services</a></li>
+    <li><a href="/#gallery" onclick="closeMenu()">Gallery</a></li>
+    <li><a href="/#reviews" onclick="closeMenu()">Reviews</a></li>
+    <li><a href="/#contact" class="nav-cta" onclick="closeMenu()">Free Quote</a></li>
+  </ul>
+</nav>
+
+<!-- 404 -->
+<div class="err">
+  <div class="err-text">
+    <span class="err-code">Error 404 &#183; Page Not Found</span>
+    <h1>This one got<br>cut a bit short.</h1>
+    <p class="err-sub">The page you're after doesn't exist &#8212; it may have been moved or the link might be wrong. Head back to the homepage, or jump straight to what you were looking for below.</p>
+    <div class="err-btns">
+      <a href="/" class="btn-dark">Back to Homepage</a>
+      <a href="/#contact" class="btn-outline">Get a Free Quote</a>
+    </div>
+    <div class="err-links">
+      <span class="err-links-title">Our Services</span>
+      <div class="err-links-grid">
+        <a href="/kitchens.html">Fitted Kitchens</a>
+        <a href="/plykea.html">Plykea Kitchens</a>
+        <a href="/doors.html">Door Fitting</a>
+        <a href="/interior.html">Interior Joinery</a>
+        <a href="/flooring.html">Flooring</a>
+        <a href="/bathroom.html">Bathrooms</a>
+        <a href="/loft.html">Loft Conversions</a>
+        <a href="/refurb.html">Full Refurbishments</a>
+        <a href="/commercial.html">Commercial Joinery</a>
+      </div>
+    </div>
+  </div>
+  <div class="err-img">
+    <img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/568351433_1365561845359170_1210440652222654133_n.jpg" alt="Clegg Joinery craftsmanship">
+    <div class="err-img-overlay"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-bottom">
+    <span>&#169; 2025 Clegg Joinery &#183; All rights reserved</span>
+    <a href="https://www.franks-media.co.uk" target="_blank" rel="noopener">Website by Franks Media</a>
+  </div>
+</footer>
+
+<script>
+function toggleMenu() {
+  var btn = document.getElementById('menuBtn');
+  var nav = document.getElementById('navLinks');
+  var isOpen = nav.classList.toggle('open');
+  btn.classList.toggle('open', isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+}
+function closeMenu() {
+  document.getElementById('navLinks').classList.remove('open');
+  document.getElementById('menuBtn').classList.remove('open');
+  document.body.style.overflow = '';
+}
+</script>
+</body>
+</html>
