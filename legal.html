@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Legal & Privacy – Clegg Joinery</title>
+<meta name="robots" content="noindex, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --black:   #111111;
+  --dark:    #1e1e1e;
+  --charcoal:#333333;
+  --mid:     #666666;
+  --light:   #999999;
+  --rule:    #e0e0e0;
+  --bg:      #f7f7f5;
+  --white:   #ffffff;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--charcoal); overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
+
+/* NAV */
+nav { background: var(--black); display: flex; align-items: center; justify-content: space-between; padding: 0 5%; height: 76px; position: sticky; top: 0; z-index: 200; }
+.nav-logo { display: flex; align-items: center; line-height: 0; flex-shrink: 0; }
+.nav-logo img { height: 48px; width: auto; display: block; mix-blend-mode: screen; }
+.nav-links { display: flex; list-style: none; height: 76px; align-items: center; gap: 4px; }
+.nav-links a { display: flex; align-items: center; padding: 0 16px; height: 100%; font-size: 0.82rem; font-weight: 400; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--white); }
+.nav-cta { background: var(--white) !important; color: var(--black) !important; font-weight: 500 !important; height: auto !important; padding: 10px 22px !important; border-radius: 2px; margin-left: 8px; font-size: 0.8rem !important; transition: opacity 0.2s !important; }
+.nav-cta:hover { opacity: 0.85; }
+.hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; width: 40px; height: 40px; }
+.hamburger span { display: block; width: 22px; height: 1.5px; background: var(--white); border-radius: 2px; transition: transform 0.3s ease, opacity 0.3s ease; transform-origin: center; }
+.hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* PAGE LAYOUT */
+.page-wrap { flex: 1; display: grid; grid-template-columns: 260px 1fr; max-width: 1100px; margin: 0 auto; width: 100%; padding: 72px 5%; gap: 72px; }
+
+/* SIDEBAR */
+.sidebar { position: sticky; top: 108px; align-self: flex-start; }
+.sidebar-back { display: inline-flex; align-items: center; gap: 8px; font-size: 0.78rem; font-weight: 500; color: var(--light); text-decoration: none; margin-bottom: 32px; transition: color 0.2s; }
+.sidebar-back:hover { color: var(--black); }
+.sidebar-back svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.sidebar-title { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--light); display: block; margin-bottom: 14px; }
+.sidebar nav { background: none; position: static; height: auto; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.sidebar nav a { display: block; font-size: 0.82rem; font-weight: 300; color: var(--mid); text-decoration: none; padding: 8px 0; border-bottom: 1px solid var(--rule); transition: color 0.2s; height: auto; }
+.sidebar nav a:hover { color: var(--black); }
+.sidebar nav a.active { color: var(--black); font-weight: 500; }
+
+/* CONTENT */
+.legal-content { max-width: 680px; }
+.legal-section { margin-bottom: 72px; scroll-margin-top: 108px; }
+.legal-section:last-child { margin-bottom: 0; }
+.section-label { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--light); display: block; margin-bottom: 10px; }
+.legal-section h2 { font-size: clamp(1.5rem, 2.4vw, 2rem); font-weight: 700; color: var(--black); letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 6px; }
+.effective { font-size: 0.75rem; font-weight: 300; color: var(--light); margin-bottom: 32px; display: block; }
+.legal-content p { font-size: 0.9rem; font-weight: 300; line-height: 1.9; color: var(--mid); margin-bottom: 18px; }
+.legal-content p:last-child { margin-bottom: 0; }
+.legal-content h3 { font-size: 0.9rem; font-weight: 600; color: var(--black); margin-top: 32px; margin-bottom: 10px; }
+.legal-content ul { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; padding-left: 0; }
+.legal-content ul li { font-size: 0.88rem; font-weight: 300; line-height: 1.7; color: var(--mid); display: flex; gap: 12px; align-items: flex-start; }
+.legal-content ul li::before { content: '–'; color: var(--rule); flex-shrink: 0; margin-top: 1px; }
+.legal-content a { color: var(--charcoal); text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 3px; transition: color 0.2s; }
+.legal-content a:hover { color: var(--black); }
+.divider { border: none; border-top: 1px solid var(--rule); margin: 52px 0; }
+
+/* FOOTER */
+footer { background: var(--black); }
+.ft-bottom { padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+.ft-bottom span, .ft-bottom a { font-size: 0.72rem; color: rgba(255,255,255,0.2); text-decoration: none; font-weight: 300; }
+.ft-bottom a:hover { color: rgba(255,255,255,0.5); }
+
+/* RESPONSIVE */
+@media (max-width: 860px) {
+  .page-wrap { grid-template-columns: 1fr; gap: 40px; padding-top: 48px; }
+  .sidebar { position: static; }
+}
+@media (max-width: 640px) {
+  .hamburger { display: flex; }
+  .nav-links { display: none; position: fixed; top: 76px; left: 0; right: 0; bottom: 0; background: var(--black); flex-direction: column; height: auto; z-index: 199; padding: 8px 0 40px; overflow-y: auto; border-top: 1px solid rgba(255,255,255,0.08); }
+  .nav-links.open { display: flex; }
+  .nav-links li { width: 100%; }
+  .nav-links a { padding: 18px 6%; height: auto; font-size: 1rem; font-weight: 500; color: rgba(255,255,255,0.7); border-bottom: 1px solid rgba(255,255,255,0.06); justify-content: space-between; }
+  .nav-links a::after { content: '→'; font-size: 0.9rem; color: rgba(255,255,255,0.25); }
+  .nav-links li:last-child a { border-bottom: none; }
+  .nav-cta { margin: 24px 6% 0 !important; padding: 16px 24px !important; font-size: 0.88rem !important; font-weight: 600 !important; text-align: center; justify-content: center !important; }
+  .nav-cta::after { display: none !important; }
+  .page-wrap { padding: 40px 5%; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo"><img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/cleggjoinery/refs/heads/main/clegg%20logo%202.png" alt="Clegg Joinery"></a>
+  <button class="hamburger" id="menuBtn" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="/" onclick="closeMenu()">Home</a></li>
+    <li><a href="/#services" onclick="closeMenu()">Services</a></li>
+    <li><a href="/#contact" class="nav-cta" onclick="closeMenu()">Free Quote</a></li>
+  </ul>
+</nav>
+
+<!-- CONTENT -->
+<div class="page-wrap">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <a href="/" class="sidebar-back">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      Back to site
+    </a>
+    <span class="sidebar-title">Contents</span>
+    <nav>
+      <a href="#privacy" class="active">i &nbsp; Privacy Policy</a>
+      <a href="#terms">ii &nbsp; Terms of Use</a>
+    </nav>
+  </aside>
+
+  <!-- LEGAL TEXT -->
+  <div class="legal-content">
+
+    <!-- PRIVACY -->
+    <section class="legal-section" id="privacy">
+      <span class="section-label">i</span>
+      <h2>Privacy Policy</h2>
+      <span class="effective">Effective Date: June 2025</span>
+
+      <p>Clegg Joinery ("we", "us", "our") is committed to protecting your privacy. This policy explains how we collect, use and protect your personal data when you use our website.</p>
+
+      <h3>1. Information We Collect</h3>
+      <p>We may collect the following personal data when you use our website:</p>
+      <ul>
+        <li>Name</li>
+        <li>Phone number</li>
+        <li>Email address</li>
+        <li>Messages submitted via our contact form</li>
+      </ul>
+
+      <h3>2. How We Use Your Information</h3>
+      <p>We use the information collected for:</p>
+      <ul>
+        <li>Responding to enquiries and communicating with clients</li>
+        <li>Providing requested information or services</li>
+        <li>Analytics to improve our website and services</li>
+        <li>Marketing purposes where permitted</li>
+      </ul>
+
+      <h3>3. Sharing with Third Parties</h3>
+      <p>We may share your data with third parties, including service providers for website analytics, marketing or communication, and legal authorities when required by law. All third parties must comply with data protection laws.</p>
+
+      <h3>4. Data Retention</h3>
+      <p>We retain personal data only as long as necessary for the purposes outlined in this policy, unless a longer retention period is required by law.</p>
+
+      <h3>5. Your Rights</h3>
+      <p>Under UK GDPR you have the right to:</p>
+      <ul>
+        <li>Request access to your personal data</li>
+        <li>Request correction or deletion of your data</li>
+        <li>Object to the use of your data for marketing purposes</li>
+      </ul>
+      <p>To exercise these rights, contact us at <a href="mailto:info@cleggjoinery.co.uk">info@cleggjoinery.co.uk</a>.</p>
+
+      <h3>6. Security</h3>
+      <p>We take reasonable steps to protect your personal data from unauthorised access or misuse. Our website is served over HTTPS and form submissions are processed securely.</p>
+
+      <h3>7. Policy Updates</h3>
+      <p>We may update this policy from time to time. Any changes will be posted with a revised effective date at the top of this page.</p>
+
+      <h3>8. Contact Us</h3>
+      <p>For privacy-related enquiries, contact: <a href="mailto:info@cleggjoinery.co.uk">info@cleggjoinery.co.uk</a></p>
+    </section>
+
+    <hr class="divider">
+
+    <!-- TERMS -->
+    <section class="legal-section" id="terms">
+      <span class="section-label">ii</span>
+      <h2>Terms of Use</h2>
+      <span class="effective">Effective Date: June 2025</span>
+
+      <p>Welcome to the Clegg Joinery website. By accessing or using this website, you agree to the following Terms of Use. If you do not agree, please do not use the website.</p>
+
+      <h3>1. Use of the Website</h3>
+      <ul>
+        <li>You may use this website for lawful purposes only.</li>
+        <li>You agree not to use the website in any way that is fraudulent, harmful or in violation of any laws.</li>
+        <li>We reserve the right to restrict or terminate access if any misuse is detected.</li>
+      </ul>
+
+      <h3>2. Information Disclaimer</h3>
+      <ul>
+        <li>The content on this website is for informational purposes only and does not constitute professional advice.</li>
+        <li>We make every effort to ensure accuracy, but we do not guarantee that all information is up to date or error-free.</li>
+      </ul>
+
+      <h3>3. Intellectual Property</h3>
+      <ul>
+        <li>Content, including text, imagery and logos, is the property of Clegg Joinery unless otherwise stated.</li>
+        <li>You may not copy, reproduce or distribute any content without written permission.</li>
+      </ul>
+
+      <h3>4. User-Submitted Information</h3>
+      <ul>
+        <li>If you submit information via our contact forms, you confirm that the details provided are accurate and do not infringe any third-party rights.</li>
+        <li>By submitting messages, you grant us permission to use the information for responding to enquiries, analytics and marketing purposes.</li>
+      </ul>
+
+      <h3>5. Privacy and Data Protection</h3>
+      <p>We collect and process personal data in accordance with our Privacy Policy above. By using this site, you agree to the terms outlined therein.</p>
+
+      <h3>6. Third-Party Links</h3>
+      <p>Our website may contain links to third-party sites. We are not responsible for their content or privacy practices.</p>
+
+      <h3>7. Limitation of Liability</h3>
+      <ul>
+        <li>We are not liable for any losses, damages or disruptions resulting from the use of this website.</li>
+        <li>Your use of the website is at your own risk.</li>
+      </ul>
+
+      <h3>8. Changes to These Terms</h3>
+      <p>We reserve the right to update these terms at any time. Continued use of the website after changes constitutes acceptance of the revised terms.</p>
+
+      <h3>9. Governing Law</h3>
+      <p>These terms are governed by the law of England and Wales. Any disputes shall be subject to the exclusive jurisdiction of the courts of England and Wales.</p>
+
+      <h3>10. Contact Us</h3>
+      <p>For any questions regarding these Terms of Use, please contact: <a href="mailto:info@cleggjoinery.co.uk">info@cleggjoinery.co.uk</a></p>
+    </section>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-bottom">
+    <span>&#169; 2026 Clegg Joinery. All rights reserved.</span>
+    <a href="https://www.franks-media.co.uk" target="_blank" rel="noopener">Website by Franks Media</a>
+  </div>
+</footer>
+
+<script>
+function toggleMenu() {
+  var btn = document.getElementById('menuBtn');
+  var nav = document.getElementById('navLinks');
+  var isOpen = nav.classList.toggle('open');
+  btn.classList.toggle('open', isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+}
+function closeMenu() {
+  document.getElementById('navLinks').classList.remove('open');
+  document.getElementById('menuBtn').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Sidebar active state on scroll
+var sections = document.querySelectorAll('.legal-section');
+var navLinks = document.querySelectorAll('.sidebar nav a');
+window.addEventListener('scroll', function() {
+  var scrollY = window.scrollY + 140;
+  sections.forEach(function(s) {
+    if (s.offsetTop <= scrollY) {
+      navLinks.forEach(function(a) { a.classList.remove('active'); });
+      var match = document.querySelector('.sidebar nav a[href="#' + s.id + '"]');
+      if (match) match.classList.add('active');
+    }
+  });
+});
+</script>
+</body>
+</html>
