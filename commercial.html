@@ -386,7 +386,7 @@ footer { background: var(--black); }
     </div>
   </div>
   <div class="c-form reveal" style="transition-delay:.07s">
-    <form action="https://formspree.io/f/mojglwzy" method="POST" autocomplete="off">
+    <form class="fs-form" autocomplete="off">
       <span class="s-label" style="display:block;margin-bottom:6px">Enquiry Form</span>
       <h2 style="font-size:1.4rem;margin-bottom:4px">Tell us about your project</h2>
       <div class="form-grid">
@@ -483,6 +483,39 @@ document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
 function openLb(src) { document.getElementById('lb-img').src = src; document.getElementById('lb').classList.add('open'); }
 function closeLb() { document.getElementById('lb').classList.remove('open'); }
 document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLb(); });
+
+// Contact form submission
+document.querySelectorAll('.fs-form').forEach(function(form) {
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var btn = form.querySelector('.f-submit');
+    var msg = form.querySelector('.f-ok');
+    var original = btn ? btn.textContent : '';
+    if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
+    fetch('https://formspree.io/f/mojglwzy', {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(function(res) {
+      if (!res.ok) throw new Error();
+      form.querySelectorAll('input, textarea, select').forEach(function(el) { el.disabled = true; });
+      if (btn) { btn.style.display = 'none'; }
+      if (msg) { msg.style.display = 'block'; }
+    }).catch(function() {
+      if (btn) {
+        btn.disabled = false;
+        btn.textContent = original;
+      }
+      if (msg) {
+        msg.textContent = 'Sorry, something went wrong. Please call 07926 646925 or email info@cleggjoinery.co.uk.';
+        msg.style.background = '#fdf2f2';
+        msg.style.borderColor = '#e6c4c4';
+        msg.style.color = '#8a3a3a';
+        msg.style.display = 'block';
+      }
+    });
+  });
+});
 </script>
 </body>
 </html>
