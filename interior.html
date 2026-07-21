@@ -514,12 +514,12 @@ footer { background: var(--black); }
       <span class="s-label" style="display:block;margin-bottom:6px">Enquiry Form</span>
       <h2 style="font-size:1.4rem;margin-bottom:4px">Tell us about your project</h2>
       <div class="form-grid">
-        <div class="f-field"><label>First Name</label><input type="text" placeholder="John" required></div>
-        <div class="f-field"><label>Last Name</label><input type="text" placeholder="Smith" required></div>
-        <div class="f-field full"><label>Phone Number</label><input type="tel" placeholder="07700 000000"></div>
-        <div class="f-field full"><label>Email Address</label><input type="email" placeholder="john@example.com" required></div>
+        <div class="f-field"><label>First Name</label><input type="text" name="first_name" placeholder="John" required></div>
+        <div class="f-field"><label>Last Name</label><input type="text" name="last_name" placeholder="Smith" required></div>
+        <div class="f-field full"><label>Phone Number</label><input type="tel" name="phone" placeholder="07700 000000"></div>
+        <div class="f-field full"><label>Email Address</label><input type="email" name="email" placeholder="john@example.com" required></div>
         <div class="f-field full"><label>Type of Work</label>
-          <select>
+          <select name="service">
             <option value="">Please select...</option>
             <option>Fitted Wardrobes</option>
             <option>Staircase / Handrail</option>
@@ -529,7 +529,7 @@ footer { background: var(--black); }
             <option>Other Interior Joinery</option>
           </select>
         </div>
-        <div class="f-field full"><label>Project Details</label><textarea placeholder="Tell us a bit about what you're looking for..."></textarea></div>
+        <div class="f-field full"><label>Project Details</label><textarea name="message" placeholder="Tell us a bit about what you're looking for..."></textarea></div>
         <button type="submit" class="f-submit">Send Enquiry</button>
         <div class="f-ok" id="form-msg">&#10003; Thank you . We'll be in touch shortly.</div>
       </div>
